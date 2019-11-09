@@ -46,6 +46,7 @@ const wheel = {
 };
     
 const DisplayWheelSet = (props) => {
+    let index=1;
     return (
         <div>
             3x3 Display
@@ -66,9 +67,9 @@ const DisplayWheelSet = (props) => {
             </ul>
             
             All items:
-            {wheel.left.map(item => <DisplayItem item={item} />)}
-            {wheel.center.map(item => <DisplayItem item={item} />)}
-            {wheel.right.map(item => <DisplayItem item={item} />)}
+            {wheel.left.map(item => <DisplayItem key={"wl" + index++} item={item} />)}
+            {wheel.center.map(item => <DisplayItem key={"wc" + index++} item={item} />)}
+            {wheel.right.map(item => <DisplayItem key={"wr" + index++} item={item} />)}
         </div>
 );
 }
