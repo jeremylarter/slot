@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 100 100" width="100px" height="100px" xmlns="http://www.w3.org/2000/svg">
+  <title>Slot machine simulator - Computing III - Major assignment</title>
+  <desc>Update of pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
+  <style>
+    .bell-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .bell1 {stroke: #0008fc;}
+    .bell2 {stroke: #0010fc;}
+    .bell3 {stroke: #0018fc;}
+    .bell4 {stroke: #0020fc;}
+    .bell5 {stroke: #0028fc;}
+    .bell6 {stroke: #0030fc;}
+    .bell7 {stroke: #0038fc;}
+    .bell8 {stroke: #0040fc;}
+    .bell9 {stroke: #0048fc;}
+    .bell10 {stroke: #0050fc;}
+    .bell11 {stroke: #0058fc;}
+    .bell12 {stroke: #0060fc;}
+    .bell13 {stroke: #0068fc;}
+    .bell14 {stroke: #0070fc;}
+    .bell15 {stroke: #0078fc;}
+    .bell16 {stroke: #0080fc;}
+    .bell17 {stroke: #0088fc;}
+    .bell18 {stroke: #0090fc;}
+    .bell19 {stroke: #0098fc;}
+    .bell20 {stroke: #00a0fc;}
+    .bell21 {stroke: #00a8fc;}
+    .bell22 {stroke: #00b0fc;}
+    .bell23 {stroke: #00b8fc;}
+    .bell24 {stroke: #00c0fc;}
+    .bell25 {stroke: #00c8fc;}
+    .plum-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .plum-dark-line {stroke: #c808c8;}
+    .plum6 {stroke: #c810c8;}
+    .plum7 {stroke: #c818c8;}
+    .plum8 {stroke: #c820c8;}
+    .plum9 {stroke: #c828c8;}
+    .plum10 {stroke: #c830c8;}
+    .plum11 {stroke: #c838c8;}
+    .plum12 {stroke: #c840c8;}
+    .plum13 {stroke: #c848c8;}
+    .plum14 {stroke: #c850c8;}
+    .plum15 {stroke: #c858c8;}
+    .plum16 {stroke: #c860c8;}
+    .plum17 {stroke: #c868c8;}
+    .plum18 {stroke: #c870c8;}
+    .plum19 {stroke: #c878c8;}
+    .plum20 {stroke: #c880c8;}
+    .plum21 {stroke: #c888c8;}
+    .plum22 {stroke: #c890c8;}
+    .plum23 {stroke: #c898c8;}
+    .plum24 {stroke: #c8a0c8;}
+    .plum25 {stroke: #c8a8c8;}
+    .plum-stem10 {stroke: #a05400;}
+    .plum-stem11 {stroke: #a45400;}
+    .plum-stem12 {stroke: #a85400;}
+    .plum-stem13 {stroke: #ac5400;}
+    .plum-stem14 {stroke: #b05400;}
+    .plum-stem15 {stroke: #b45400;}
+    .plum-stem16 {stroke: #b85400;}
+    .orange-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .orange4 {stroke: #fc5400;}
+    .orange5 {stroke: #fc5800;}
+    .orange6 {stroke: #fc5c00;}
+    .orange7 {stroke: #fc6000;}
+    .orange8 {stroke: #fc6400;}
+    .orange9 {stroke: #fc6800;}
+    .orange10 {stroke: #fc6c00;}
+    .orange11 {stroke: #fc7000;}
+    .orange12 {stroke: #fc7400;}
+    .orange13 {stroke: #fc7800;}
+    .orange14 {stroke: #fc7c00;}
+    .orange15 {stroke: #fc8000;}
+    .orange16 {stroke: #fc8400;}
+    .orange17 {stroke: #fc8800;}
+    .orange18 {stroke: #fc8c00;}
+    .orange19 {stroke: #fc9000;}
+    .orange20 {stroke: #fc9400;}
+    .orange21 {stroke: #fc9800;}
+    .orange22 {stroke: #fc9c00;}
+    .orange23 {stroke: #fca000;}
+    .orange24 {stroke: #fca400;}
+    .orange25 {stroke: #fca800;}
+    .orange26 {stroke: #fcac00;}
+    .orange27 {stroke: #fcb000;}
+    .orange-stem {stroke: #fc5400; fill="transparent"; mix-blend-mode: color-dodge;}
+    .bar-background {stroke: #ffffff; paint-order: stroke; fill: rgb(255, 255, 255);}
+    .bar2 {stroke: #0808fc;}
+    .bar3 {stroke: #1010fc;}
+    .bar4 {stroke: #1818fc;}
+    .bar5 {stroke: #2020fc;}
+    .bar6 {stroke: #2828fc;}
+    .bar7 {stroke: #3030fc;}
+    .bar8 {stroke: #3838fc;}
+    .bar9 {stroke: #4040fc;}
+    .bar12 {stroke: #4848fc;}
+    .bar13 {stroke: #5050fc;}
+    .bar14 {stroke: #5858fc;}
+    .bar15 {stroke: #6060fc;}
+    .bar16 {stroke: #6868fc;}
+    .bar17 {stroke: #7070fc;}
+    .bar18 {stroke: #7878fc;}
+    .bar19 {stroke: #8080fc;}
+    .bar22 {stroke: #8888fc;}
+    .bar23 {stroke: #9090fc;}
+    .bar24 {stroke: #9898fc;}
+    .bar25 {stroke: #a0a0fc;}
+    .bar26 {stroke: #a8a8fc;}
+    .bar27 {stroke: #b0b0fc;}
+    .bar28 {stroke: #b8b8fc;}
+    .bar29 {stroke: #c0c0fc;}
+    .cherry-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .cherry4 {stroke: #fc0000;}
+    .cherry5 {stroke: #fc1414;}
+    .cherry6 {stroke: #fc2828;}
+    .cherry7 {stroke: #fc3c3c;}
+    .cherry8 {stroke: #fc5050;}
+    .cherry9 {stroke: #fc6464;}
+    .cherry10 {stroke: #fc7878;}
+    .cherry11 {stroke: #fc8c8c;}
+    .cherry12 {stroke: #fca0a0;}
+    .cherry-stem9 {stroke: #3cfc3c;}
+    .cherry-stem10 {stroke: #44fc40;}
+    .cherry-stem11 {stroke: #4cfc44;}
+    .cherry-stem12 {stroke: #54fc48;}
+    .cherry-stem13 {stroke: #5cfc4c;}
+    .cherry-stem14 {stroke: #64fc50;}
+    .cherry-stem15 {stroke: #6cfc54;}
+    .cherry-stem16 {stroke: #74fc58;}
+    .cherry-stem17 {stroke: #7cfc5c;}
+    .cherry-stem18 {stroke: #84fc60;}
+    .cherry-stem19 {stroke: #8cfc64;}
+    .cherry-stem20 {stroke: #94fc68;}
+    .cherry-stem21 {stroke: #9cfc6c;}
+    .cherry-stem22 {stroke: #a4fc70;}
+    .cherry-stem23 {stroke: #acfc74;}
+  </style>
+  <g transform="matrix(1, 0, 0, 1, 0, 1)">
+    <path d="M 1,0 V 31 H 31 V 0z" class="cherry-background"/>
+    <path d="M 4,20 V 26 M 19,20 V 26" class="cherry4"/>
+    <path d="M 5,19 V 27 M 20,19 V 27" class="cherry5"/>
+    <path d="M 6,18 V 28 M 21,18 V 28" class="cherry6"/>
+    <path d="M 7,18 V 28 M 22,21 V 28" class="cherry7"/>
+    <path d="M 8,18 V 28 M 23,21 V 28" class="cherry8"/>
+    <path d="M 9,18 V 21 M 9,22 V 28 M 24,18 V 28" class="cherry9"/>
+    <path d="M 10,18 V 20 M 10,22 V 28 M 25,18 V 28" class="cherry10"/>
+    <path d="M 11,21 V 27 M 26,19 V 27" class="cherry11"/>
+    <path d="M 12,20 V 26 M 27,20 V 26" class="cherry12"/>
+    <path d="M 9,20 V 23" class="cherry-stem9"/>
+    <path d="M 10,19 V 23" class="cherry-stem10"/>
+    <path d="M 11,17 V 22" class="cherry-stem11"/>
+    <path d="M 12,16 V 20" class="cherry-stem12"/>
+    <path d="M 13,14 V 19" class="cherry-stem13"/>
+    <path d="M 14,12 V 17" class="cherry-stem14"/>
+    <path d="M 15,10 V 15" class="cherry-stem15"/>
+    <path d="M 16,7 V 13" class="cherry-stem16"/>
+    <path d="M 17,6 V 11" class="cherry-stem17"/>
+    <path d="M 18,5 V 9" class="cherry-stem18"/>
+    <path d="M 19,5 V 8" class="cherry-stem19"/>
+    <path d="M 20,4 V 12" class="cherry-stem20"/>
+    <path d="M 21,3 V 17" class="cherry-stem21"/>
+    <path d="M 22,11 V 22" class="cherry-stem22"/>
+    <path d="M 23,16 V 22" class="cherry-stem23"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 32, 1)">
+    <path d="M 1,0 V 31 H 31 V 0z" class="plum-background"/>
+    <path d="M 5,16 V 21 M 13,12 V 17 M 14,10 V 13 M 15,8 V 11" class="plum-dark-line"/>
+    <path d="M 6,13 V 22" class="plum6"/>
+    <path d="M 7,11 V 23" class="plum7"/>
+    <path d="M 8,10 V 24" class="plum8"/>
+    <path d="M 9,9 V 25" class="plum9"/>
+    <path d="M 10,9 V 25" class="plum10"/>
+    <path d="M 11,8 V 26" class="plum11"/>
+    <path d="M 12,8 V 26" class="plum12"/>
+    <path d="M 13,7 V 12 M 13,17 V 27" class="plum13"/>
+    <path d="M 14,7 V 10 M 14,13 V 27" class="plum14"/>
+    <path d="M 15,10 V 26" class="plum15"/>
+    <path d="M 16,8 V 27" class="plum16"/>
+    <path d="M 17,7 V 27" class="plum17"/>
+    <path d="M 18,7 V 27" class="plum18"/>
+    <path d="M 19,7 V 26" class="plum19"/>
+    <path d="M 20,7 V 26" class="plum20"/>
+    <path d="M 21,8 V 25" class="plum21"/>
+    <path d="M 22,8 V 25" class="plum22"/>
+    <path d="M 23,9 V 24" class="plum23"/>
+    <path d="M 24,10 V 22" class="plum24"/>
+    <path d="M 25,12 V 19" class="plum25"/>
+    <path d="M 10,3 V 6" class="plum-stem10"/>
+    <path d="M 11,3 V 6" class="plum-stem11"/>
+    <path d="M 12,2 V 5" class="plum-stem12"/>
+    <path d="M 13,2 V 4" class="plum-stem13"/>
+    <path d="M 14,2 V 5" class="plum-stem14"/>
+    <path d="M 15,3 V 6" class="plum-stem15"/>
+    <path d="M 16,4 V 8" class="plum-stem16"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 64, 1)">
+    <path d="M 1,0 V 31 H 31 V 0z" class="bell-background"/>
+    <path d="M 4 22 V 25" class="bell1"/>
+    <path d="M 5 21 V 25" class="bell2"/>
+    <path d="M 6 18 V 25" class="bell3"/>
+    <path d="M 7 13 V 25" class="bell4"/>
+    <path d="M 8 10 V 25" class="bell5"/>
+    <path d="M 9 8 V 25" class="bell6"/>
+    <path d="M 10 7 V 25" class="bell7"/>
+    <path d="M 10 7 V 25" class="bell8"/>
+    <path d="M 11 7 V 25" class="bell9"/>
+    <path d="M 12 6 V 25" class="bell10"/>
+    <path d="M 13 6 V 26 M 13 4 V 5" class="bell11"/>
+    <path d="M 14 3 V 27" class="bell12"/>
+    <path d="M 15 2 V 28" class="bell13"/>
+    <path d="M 16 2 V 28" class="bell14"/>
+    <path d="M 17 3 V 27" class="bell15"/>
+    <path d="M 18 6 V 26 M 18 4 V 5" class="bell16"/>
+    <path d="M 19 6 V 25" class="bell17"/>
+    <path d="M 20 7 V 25" class="bell18"/>
+    <path d="M 21 7 V 25" class="bell19"/>
+    <path d="M 22 8 V 25" class="bell20"/>
+    <path d="M 23 10 V 25" class="bell21"/>
+    <path d="M 24 13 V 25" class="bell22"/>
+    <path d="M 25 18 V 25" class="bell23"/>
+    <path d="M 26 21 V 25" class="bell24"/>
+    <path d="M 27 22 V 25" class="bell25"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 34)">
+    <path d="M 1,0 V 31 H 31 V 0z" class="orange-background"/>
+    <path d="M 4,12 V 19" class="orange4"/>
+    <path d="M 5,10 V 21" class="orange5"/>
+    <path d="M 6,8 V 23" class="orange6"/>
+    <path d="M 7,7 V 24" class="orange7"/>
+    <path d="M 8,6 V 25" class="orange8"/>
+    <path d="M 9,5 V 26" class="orange9"/>
+    <path d="M 10,5 V 26" class="orange10"/>
+    <path d="M 11,4 V 27" class="orange11"/>
+    <path d="M 12,4 V 27" class="orange12"/>
+    <path d="M 13,3 V 28" class="orange13"/>
+    <path d="M 14,3 V 28" class="orange14"/>
+    <path d="M 15,3 V 28" class="orange15"/>
+    <path d="M 16,3 V 28" class="orange16"/>
+    <path d="M 17,3 V 28" class="orange17"/>
+    <path d="M 18,3 V 28" class="orange18"/>
+    <path d="M 19,4 V 27" class="orange19"/>
+    <path d="M 20,4 V 27" class="orange20"/>
+    <path d="M 21,5 V 26" class="orange21"/>
+    <path d="M 22,5 V 26" class="orange22"/>
+    <path d="M 23,6 V 25" class="orange23"/>
+    <path d="M 24,7 V 24" class="orange24"/>
+    <path d="M 25,8 V 23" class="orange25"/>
+    <path d="M 26,10 V 21" class="orange26"/>
+    <path d="M 27,12 V 19" class="orange27"/>
+    <path d="M 24,13 Q 25,7 18,7" class="orange-stem"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 32, 34)">
+    <path d="M 1,0 V 31 H 31 V 0z" class="bar-background"/>
+    <path d="M 2,7 V 24" class="bar2"/>
+    <path d="M 3,7 V 24" class="bar3"/>
+    <path d="M 4,7 V 10 M 4,14 V 17 M 4,21 V 24" class="bar4"/>
+    <path d="M 5,7 V 10 M 5,14 V 17 M 5,21 V 24" class="bar5"/>
+    <path d="M 6,7 V 11 M 6,13 V 18 M 6,20 V 24" class="bar6"/>
+    <path d="M 7,8 V 12 M 7,12 V 19 M 7,19 V 23" class="bar7"/>
+    <path d="M 8,9 V 15 M 8,16 V 23" class="bar8"/>
+    <path d="M 9,10 V 14 M 9,17 V 21" class="bar9"/>
+    <path d="M 12,17 V 24" class="bar12"/>
+    <path d="M 13,12 V 24" class="bar13"/>
+    <path d="M 14,9 V 21" class="bar14"/>
+    <path d="M 15,7 V 15 M 15,17 V 20" class="bar15"/>
+    <path d="M 16,7 V 15 M 16,17 V 20" class="bar16"/>
+    <path d="M 17,9 V 21" class="bar17"/>
+    <path d="M 18,12 V 24" class="bar18"/>
+    <path d="M 19,17 V 24" class="bar19"/>
+    <path d="M 22,7 V 24" class="bar22"/>
+    <path d="M 23,7 V 24" class="bar23"/>
+    <path d="M 24,7 V 10 M 24,14 V 17" class="bar24"/>
+    <path d="M 25,7 V 10 M 25,14 V 18" class="bar25"/>
+    <path d="M 26,7 V 11 M 26,13 V 20" class="bar26"/>
+    <path d="M 27,8 V 12 M 27,12 V 16 M 27,16 V 22" class="bar27"/>
+    <path d="M 28,9 V 15 M 28,18 V 24" class="bar28"/>
+    <path d="M 29,10 V 14 M 29,20 V 24" class="bar29"/>
+  </g>
+</svg>

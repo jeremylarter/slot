@@ -1,23 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import slot from './slot.svg';
+import DisplayWheelSet from './DisplayWheelSet';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <img src={slot} className="App-logo" alt="slot" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Computing III Slot Machine Simulator
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <DisplayWheelSet startPosition={{
+          left: 1,
+          center: 1,
+          right: 1
+        }} />
       </header>
     </div>
   );
