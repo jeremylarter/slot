@@ -3,7 +3,7 @@ import React from 'react';
 const Orange = () => {
     return (
         <div>
-            <svg viewBox="0 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+            <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <symbol id="symbol-orange" viewBox="0.5 0 30 30">
                         <g>

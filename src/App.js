@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import slot from './slot.svg';
 import DisplayWheelSet from './DisplayWheelSet';
+import RotateWheel from './RotateWheel'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <p>
           Computing III Slot Machine Simulator
         </p>
+        <RotateWheel />
         <DisplayWheelSet startPosition={{
           left: 1,
           center: 1,
