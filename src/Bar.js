@@ -1,13 +1,21 @@
 import React from 'react';
 
-const Bar = () => {
+const Bar = (props) => {
+    let background = "rgb(255, 255, 255)";//rgb(255, 255, 255), #ff0000
+    let className = "bar-background";
+    let symbolName = "symbol-bar";
+    if (props && props.background) {
+        background = props.background;
+        className = "bar-background2"
+        symbolName = "symbol-bar2";
+    }
     return (
         <div>
             <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <defs>
-                    <symbol id="symbol-bar" viewBox="0.5 0 30 30">
+                    <symbol id={symbolName} viewBox="0.5 0 30 30">
                         <g>
-                            <path d="M 0,0 V 30 H 30 V 0z" className="bar-background" />
+                            <path d="M 0,0 V 30 H 30 V 0z" className={className} />
                             <path d="M 2,7 V 24" className="bar2" />
                             <path d="M 3,7 V 24" className="bar3" />
                             <path d="M 4,7 V 10 M 4,14 V 17 M 4,21 V 24" className="bar4" />
@@ -36,10 +44,10 @@ const Bar = () => {
                     </symbol>
                 </defs>
                 <title>bar symbol instance</title>
-                <desc>Update of bar pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
+                <desc>Update of bar pixel graphics to modern SVG. Contains a bar graphic with lines drawn vertically down.</desc>
                 <style>
                     {`
-                    .bar-background {stroke: #ffffff; paint-order: stroke; fill: rgb(255, 255, 255);}
+                    .`+className+` {stroke: `+background+`; paint-order: stroke; fill: `+background+`;}
                     .bar2 {stroke: #0808fc;}
                     .bar3 {stroke: #1010fc;}
                     .bar4 {stroke: #1818fc;}
@@ -66,7 +74,7 @@ const Bar = () => {
                     .bar29 {stroke: #c0c0fc;}
                 `}
                 </style>
-                <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-bar" />
+                <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref={"#"+symbolName} />
             </svg>
         </div>
     );

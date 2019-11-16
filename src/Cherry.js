@@ -36,7 +36,7 @@ const Cherry = () => {
                     </symbol>
                 </defs>
                 <title>cherry symbol instance</title>
-                <desc>Update of cherry pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
+                <desc>Update of cherry pixel graphics to modern SVG. Contains a cherry graphic with lines drawn vertically down.</desc>
                 <style>{`
                     .cherry-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
                     .cherry4 {stroke: #fc0000;}

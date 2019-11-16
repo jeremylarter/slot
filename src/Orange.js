@@ -37,7 +37,7 @@ const Orange = () => {
                     </symbol>
                 </defs>
                 <title>orange symbol instance</title>
-                <desc>Update of orange pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
+                <desc>Update of orange pixel graphics to modern SVG. Contains an orange fruit graphic with lines drawn vertically down.</desc>
                 <style>
                 {`
                     .orange-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}

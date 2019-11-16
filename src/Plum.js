@@ -40,7 +40,7 @@ const Plum = () => {
                     </symbol>
                 </defs>
                 <title>plum symbol instance</title>
-                <desc>Update of plum pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
+                <desc>Update of plum pixel graphics to modern SVG. Contains a plum graphic with lines drawn vertically down.</desc>
                 <style>
                     {`
                     .plum-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
