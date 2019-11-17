@@ -11,20 +11,17 @@ const RotateWheelSet = (props) => {
       });
     const requestRef = useRef();
     const functionRef = useRef();
-    const [loopMax, setLoopMax] = useState(50);
+    const [loopMax, setLoopMax] = useState(0);
 
     const loop = useCallback( time => {
         setTimer(() => time);
         functionRef.current += 1;
-        //output will be displayed correctly, but it cannot be accessed here because it will just be output = "a" as initialised.
-        //so, instead use functionRef.current which is set in memory and will not trigger a re-render
         const currentIndex = functionRef.current;
         setCurrentPosition(_ => ({
             left: currentIndex,
             center: currentIndex,
             right: currentIndex
         }));
-        console.log(functionRef.current);
 
         if (functionRef.current < loopMax) {
             requestRef.current = window.requestAnimationFrame(loop);
@@ -41,11 +38,11 @@ const RotateWheelSet = (props) => {
     }
 
     useEffect(() => {
-        if (requestRef.current === undefined) {
+        if (functionRef.current === undefined) {
             functionRef.current = 0;
+        } else { //delay the loop until after first page load.
+            requestRef.current = window.requestAnimationFrame(loop);
         }
-        //todo: how can we delay the start until the button is pressed?
-        requestRef.current = window.requestAnimationFrame(loop);
 
         return () => {
             //stop the animation when disposed
