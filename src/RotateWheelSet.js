@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect, useCallback} from 'react';
 import DisplayWheelSet from './DisplayWheelSet';
 
 const RotateWheelSet = (props) => {
-    const [output, setOutput] = useState("achoo");
+    //todo: use the props.startPosition of the caller
     const [timer, setTimer] = useState(0);
     const [currentPosition, setCurrentPosition] = useState({
         left: 1,
@@ -11,10 +11,9 @@ const RotateWheelSet = (props) => {
       });
     const requestRef = useRef();
     const functionRef = useRef();
-    const loopMax = 50;
+    const [loopMax, setLoopMax] = useState(50);
 
     const loop = useCallback( time => {
-        setOutput(previous => previous + "o");
         setTimer(() => time);
         functionRef.current += 1;
         //output will be displayed correctly, but it cannot be accessed here because it will just be output = "a" as initialised.
@@ -24,20 +23,30 @@ const RotateWheelSet = (props) => {
             left: currentIndex,
             center: currentIndex,
             right: currentIndex
-          }));
+        }));
+        console.log(functionRef.current);
+
         if (functionRef.current < loopMax) {
             requestRef.current = window.requestAnimationFrame(loop);
         }
-    }, []);
+    }, [loopMax]);
 
-    const cancelCounter = () => {
+    const cancelSpin = () => {
         window.cancelAnimationFrame(requestRef.current)
     }
+
+    const spin = () => {
+        //todo: only allow another spin after the current spin has finished.
+        setLoopMax(previous => previous + 50);
+    }
+
     useEffect(() => {
         if (requestRef.current === undefined) {
             functionRef.current = 0;
-            requestRef.current = window.requestAnimationFrame(loop);
         }
+        //todo: how can we delay the start until the button is pressed?
+        requestRef.current = window.requestAnimationFrame(loop);
+
         return () => {
             //stop the animation when disposed
             window.cancelAnimationFrame(requestRef.current)
@@ -46,8 +55,8 @@ const RotateWheelSet = (props) => {
 
     return (
         <div>
-            <button onClick={cancelCounter}>cancel</button><br />
-            {output}<br />
+            <button onClick={cancelSpin}>cancel</button><br />
+            <button onClick={spin}>spin</button><br />
             {timer}
             <DisplayWheelSet startPosition={currentPosition} />
         </div>
