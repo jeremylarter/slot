@@ -12,9 +12,9 @@ function App() {
           Computing III Slot Machine Simulator
         </p>
         <RotateWheelSet startPosition={{
-          left: 1,
-          center: 1,
-          right: 1
+          left: 0,
+          center: 0,
+          right: 0
         }} />
       </header>
     </div>
