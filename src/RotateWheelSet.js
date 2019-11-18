@@ -6,17 +6,26 @@ const RotateWheelSet = (props) => {
     const [currentPosition, setCurrentPosition] = useState(props.startPosition);
     const requestRef = useRef();
     const functionRef = useRef();
+    const deltaRef = useRef({last:0, now:0, change:0});
     const [loopMax, setLoopMax] = useState(0);
+    const minDelay = 100;
+    const minItemMoves = 20;
 
     const loop = useCallback( time => {
-        setTimer(() => time);
-        functionRef.current += 1;
-        const currentIndex = functionRef.current;
-        setCurrentPosition(_ => ({
-            left: currentIndex,
-            center: currentIndex,
-            right: currentIndex
-        }));
+        deltaRef.current.now = time;//refactor out?
+        deltaRef.current.change = deltaRef.current.now - deltaRef.current.last;
+        //setTimer(() => time);
+        setTimer(() => deltaRef.current.change);
+        if (deltaRef.current.change > minDelay) {
+            functionRef.current += 1;
+            const currentIndex = functionRef.current;
+            deltaRef.current.last = time;
+            setCurrentPosition(_ => ({
+                left: currentIndex,
+                center: currentIndex,
+                right: currentIndex
+            }));
+        }
         //todo: can we smooth out the scroll using css animation?
         if (functionRef.current < loopMax) {
             requestRef.current = window.requestAnimationFrame(loop);
@@ -30,7 +39,7 @@ const RotateWheelSet = (props) => {
     const spin = () => {
         //todo: only allow another spin after the current spin has finished.
         //idea: use css scroll stop position and allow the user to see all the items on a wheel
-        setLoopMax(previous => previous + 1);
+        setLoopMax(previous => previous + minItemMoves);
     }
 
     useEffect(() => {
