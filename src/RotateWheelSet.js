@@ -1,8 +1,9 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
 import DisplayWheelSet from './DisplayWheelSet';
+import FramesPerSecond from './FramesPerSecond';
 
 const RotateWheelSet = (props) => {
-    const minDelay = 100;//number of milliseconds that it takes an item to move up one spot.
+    const minDelay = 20;//number of milliseconds that it takes an item to move up one spot.
     const [timer, setTimer] = useState(minDelay);//todo: what is the value proposition for useState over useRef?
     const [spinCounter, setSpinCounter] = useState(0);
     const spinningRef = useRef();
@@ -10,8 +11,6 @@ const RotateWheelSet = (props) => {
     const functionRef = useRef();
     const dummyRef = useRef();
     const deltaRef = useRef({last:0, change:0});
-    const initFrameRateRef = {last:0, high:60, low: 60, error: "", framesPerSecond: 60};
-    const frameRateRef = useRef(initFrameRateRef);
     const loopMax = 10000;//infinite loop guard: maximum number of elapsed frames without settling on next position before we quit
     const wheelIndexMax = 11; //todo: remove this and use DisplayWheelSet values.
 
@@ -27,9 +26,10 @@ const RotateWheelSet = (props) => {
     const initTimePassed = {left: false, center: false, right: false};
     const initWheelsDeltaRef = {last:0, change:0, timePassed: initTimePassed};
     const wheelsDeltaRef = useRef(initWheelsDeltaRef);
-    const minWheelSpinTime = 2000;//todo: change this to different intervals - 4000, 1000, 1000
-
+    const minWheelSpinTime = 100;//todo: change this to different intervals - 4000, 1000, 1000
+    const deltaTime = useRef(0);
     const loop = useCallback( time => {
+        deltaTime.current = time;
         functionRef.current += 1;//todo: rename this as loopGuard. When developing, we do not want an infinite loop.
         const wheelIncrement = (currentIndex, nextIndex, wheelTimePassed) => currentIndex === nextIndex && wheelTimePassed ? 0 : 1;
         if (wheelsDeltaRef.current.last === 0) {
@@ -70,31 +70,6 @@ const RotateWheelSet = (props) => {
         }
         //todo: can we smooth out the scroll using css animation?
         if (spinningRef.current && functionRef.current < loopMax) {
-            if (frameRateRef.current.last === 0) {
-                //first iteration, the change should be 1000/60
-                frameRateRef.current.last = time - 16.6;//1000/60 ~= 16.6
-            }
-            const currentFramesPerSecond = Math.floor(1000 / (time - frameRateRef.current.last));
-            const before = {time, last: frameRateRef.current.last};
-            if (currentFramesPerSecond !== frameRateRef.current.framesPerSecond) {
-                if (currentFramesPerSecond > frameRateRef.current.high && isFinite(currentFramesPerSecond)) {
-                    frameRateRef.current.high = currentFramesPerSecond;
-                }
-                if (currentFramesPerSecond < frameRateRef.current.low) {
-                    frameRateRef.current.low = currentFramesPerSecond;
-                }
-                if (isNaN(currentFramesPerSecond)) {
-                    frameRateRef.current.error = "NaN found";
-                }
-                if (!isFinite(currentFramesPerSecond)) {
-                    frameRateRef.current.error = "Divide by zero time found";
-                }
-                if (currentFramesPerSecond === 0) {
-                    frameRateRef.current.error = "no frames per second? time: " + before.time + " last: " + before.last;
-                }
-                frameRateRef.current.framesPerSecond = currentFramesPerSecond;// * frameCount (i.e. * 1)
-            }
-            frameRateRef.current.last = time;
             requestRef.current = window.requestAnimationFrame(loop);
         }
         dummyRef.current = spinCounter;//used to stop React complaining
@@ -106,7 +81,6 @@ const RotateWheelSet = (props) => {
         spinningRef.current = true;
         setSpinCounter(previous => previous + 1);//todo: what happens when overflow occurs? max float + 1?
         wheelsDeltaRef.current = initWheelsDeltaRef;
-        frameRateRef.current = initFrameRateRef;
         //const comparisonPosition = {left: positionRef.current.position.left % 11, center: positionRef.current.position.center % 11, right: positionRef.current.position.right % 11};
         //console.log("current: ", comparisonPosition, positionRef.current.position);
         //positionRef.current.next = log("spin: ", getNextPosition)();
@@ -133,7 +107,7 @@ const RotateWheelSet = (props) => {
             <button onClick={spin} disabled={spinningRef.current}>spin</button><br />
             count: {spinCounter} {spinningRef.current ? "spinning" : "stopped"} <br />
             {timer}<br />
-            FPS: {frameRateRef.current.framesPerSecond} ({frameRateRef.current.low}-{frameRateRef.current.high}) {frameRateRef.current.error}
+            <FramesPerSecond time={deltaTime.current} animationId={spinCounter} />
             <DisplayWheelSet startPosition={currentPosition} />
         </div>
     );
