@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, memo} from 'react';
 import DisplayItem from './DisplayItem';
 
 export const itemType = Object.freeze({"bar":1, "bell":2, "cherry":3, "orange":4, "plum":5});
@@ -64,9 +64,11 @@ const DisplayWheelSet = (props) => {
     //say position = 8, above = 8 + 10 % 11 = 7, below = 8 + 1 % 11 = 9
     //say position = 9, above = 9 + 10 % 11 = 8, below = 9 + 1 % 11 =10
     //say position =10, above =10 + 10 % 11 = 9, below =10 + 1 % 11 = 0
+    const render = useRef(0);
     const getWheelIndex = (position, offset, maxItems) => (position + offset) % maxItems;
     return (
         <div>
+            <p>{render.current++}</p>
             {wheelSet.map(_ => 
             <ul key={_.key} style={{ listStyleType:"none", display: "inline-block" }}>
                 {offsetList.map( offset => 
@@ -83,4 +85,4 @@ const DisplayWheelSet = (props) => {
     );
 }
 
-export default DisplayWheelSet;
+export default memo(DisplayWheelSet);

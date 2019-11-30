@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo, useRef} from 'react';
 import { itemType } from './DisplayWheelSet';
 import Bar from './Bar';
 import Bell from './Bell';
@@ -25,11 +25,13 @@ const DisplayItem = (props) => {
             item = <Cherry />
 
     }
+    const render = useRef(0);
     return (
         <div>
+            {render.current++}
             {item}
         </div>
     );
 }
 
-export default DisplayItem;
+export default memo(DisplayItem);
