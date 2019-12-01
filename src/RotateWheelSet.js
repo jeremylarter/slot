@@ -100,15 +100,17 @@ const RotateWheelSet = (props) => {
             window.cancelAnimationFrame(requestRef.current)
         };
     }, [loop]);
+    const debug = false;
+    const fps = <FramesPerSecond time={deltaTime.current} animationId={spinCounter} />;
+    const debugOutput = `count: ${spinCounter} ${spinningRef.current ? "spinning" : "stopped"} ${timer} `;
 
     return (
         <div>
             <button onClick={cancelSpin} disabled={!spinningRef.current}>break</button><br />
             <button onClick={spin} disabled={spinningRef.current}>spin</button><br />
-            count: {spinCounter} {spinningRef.current ? "spinning" : "stopped"} <br />
-            {timer}<br />
-            <FramesPerSecond time={deltaTime.current} animationId={spinCounter} />
-            <DisplayWheelSet startPosition={currentPosition} />
+            {debug ? debugOutput : ""}
+            {debug ? fps : ""}
+            <DisplayWheelSet startPosition={currentPosition} debug={debug} />
         </div>
     );
 }

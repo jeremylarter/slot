@@ -28,7 +28,7 @@ const DisplayItem = (props) => {
     const render = useRef(0);
     return (
         <div>
-            {render.current++}
+            {props.debug ? render.current++ : ""}
             {item}
         </div>
     );
