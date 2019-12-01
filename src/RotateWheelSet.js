@@ -3,7 +3,8 @@ import DisplayWheelSet from './DisplayWheelSet';
 import FramesPerSecond from './FramesPerSecond';
 
 const RotateWheelSet = (props) => {
-    const minDelay = 20;//number of milliseconds that it takes an item to move up one spot.
+    const minDelay = 50;//number of milliseconds that it takes an item to move up one spot.
+    const minWheelSpinTime = 1000;//todo: change this to different intervals - 4000, 1000, 1000
     const [timer, setTimer] = useState(minDelay);//todo: what is the value proposition for useState over useRef?
     const [spinCounter, setSpinCounter] = useState(0);
     const spinningRef = useRef();
@@ -26,7 +27,6 @@ const RotateWheelSet = (props) => {
     const initTimePassed = {left: false, center: false, right: false};
     const initWheelsDeltaRef = {last:0, change:0, timePassed: initTimePassed};
     const wheelsDeltaRef = useRef(initWheelsDeltaRef);
-    const minWheelSpinTime = 100;//todo: change this to different intervals - 4000, 1000, 1000
     const deltaTime = useRef(0);
     const loop = useCallback( time => {
         deltaTime.current = time;
@@ -75,7 +75,17 @@ const RotateWheelSet = (props) => {
         dummyRef.current = spinCounter;//used to stop React complaining
     }, [spinCounter]);//end loop callback
 
+    // const insertCredit = creditAmount => props.setCredit(_ => _ + creditAmount);
+    // const spendCredit = creditAmount => props.setCredit(_ => _ - creditAmount);
+    const reduceCredit = spendAmount => () => props.setCredit(_ => _ - spendAmount);
     const cancelSpin = () => window.cancelAnimationFrame(requestRef.current);
+    const spendCredit = spendAmount => () => {
+        if (props.credit > 0) {
+            reduceCredit(spendAmount)();
+            spin();
+        }
+    }
+
     const spin = () => {
         //idea: use css scroll stop position and allow the user to see all the items on a wheel
         spinningRef.current = true;
@@ -101,15 +111,20 @@ const RotateWheelSet = (props) => {
         };
     }, [loop]);
     const debug = false;
-    const fps = <FramesPerSecond time={deltaTime.current} animationId={spinCounter} />;
-    const debugOutput = `count: ${spinCounter} ${spinningRef.current ? "spinning" : "stopped"} ${timer} `;
+    const debugOutput = (
+        <>
+            <button onClick={cancelSpin} disabled={!spinningRef.current}>break</button><br />
+            {`count: ${spinCounter} ${spinningRef.current ? "spinning" : "stopped"} ${timer} `}<br />
+            <FramesPerSecond time={deltaTime.current} animationId={spinCounter} /><br />
+            Credit: {props.credit}<br />
+        </>
+    );
+    const spendAmount = 1;
 
     return (
         <div>
-            <button onClick={cancelSpin} disabled={!spinningRef.current}>break</button><br />
-            <button onClick={spin} disabled={spinningRef.current}>spin</button><br />
+            <button onClick={spendCredit(spendAmount)} disabled={spinningRef.current}>bet</button><br />
             {debug ? debugOutput : ""}
-            {debug ? fps : ""}
             <DisplayWheelSet startPosition={currentPosition} debug={debug} />
         </div>
     );

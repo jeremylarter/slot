@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import slot from './slot.svg';
-import RotateWheelSet from './RotateWheelSet'
+import Game from './Game';
 
 function App() {
   return (
@@ -11,12 +11,8 @@ function App() {
         <p>
           Computing III Slot Machine Simulator
         </p>
-        <RotateWheelSet startPosition={{
-          left: 0,
-          center: 0,
-          right: 0
-        }} />
-      </header>
+        </header>
+        <Game />
     </div>
   );
 }
