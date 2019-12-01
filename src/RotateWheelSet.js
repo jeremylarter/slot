@@ -4,7 +4,7 @@ import FramesPerSecond from './FramesPerSecond';
 
 const RotateWheelSet = (props) => {
     const minDelay = 50;//number of milliseconds that it takes an item to move up one spot.
-    const minWheelSpinTime = 1000;//todo: change this to different intervals - 4000, 1000, 1000
+    const minWheelSpinTime = 100;//todo: change this to different intervals - 4000, 1000, 1000
     const [timer, setTimer] = useState(minDelay);//todo: what is the value proposition for useState over useRef?
     const [spinCounter, setSpinCounter] = useState(0);
     const spinningRef = useRef();
@@ -70,14 +70,15 @@ const RotateWheelSet = (props) => {
         dummyRef.current = spinCounter;//used to stop React complaining
     }, [spinCounter, props]);//end loop callback
 
-    // const insertCredit = creditAmount => props.setCredit(_ => _ + creditAmount);
-    // const spendCredit = creditAmount => props.setCredit(_ => _ - creditAmount);
     const reduceCredit = spendAmount => () => props.setCredit(_ => _ - spendAmount);
     const cancelSpin = () => window.cancelAnimationFrame(requestRef.current);
+    const [customerAlert, setCustomerAlert] = useState("");
     const spendCredit = spendAmount => () => {
         if (props.credit > 0) {
             reduceCredit(spendAmount)();
             spin();
+        } else {
+            setCustomerAlert("Please insert credit to continue.");
         }
     }
 
@@ -93,6 +94,9 @@ const RotateWheelSet = (props) => {
     }
 
     useEffect(() => {
+        if (props.credit > 0) {
+            setCustomerAlert("");
+        }
         if (functionRef.current === undefined) {
             spinningRef.current = false;
         } else { //delay the loop until after first page load.
@@ -106,7 +110,7 @@ const RotateWheelSet = (props) => {
             //stop the animation when disposed
             window.cancelAnimationFrame(requestRef.current)
         };
-    }, [loop]);
+    }, [loop, props.credit]);
     const debug = false;
     const debugOutput = (
         <>
@@ -120,7 +124,7 @@ const RotateWheelSet = (props) => {
 
     return (
         <div>
-            <button onClick={spendCredit(spendAmount)} disabled={spinningRef.current}>bet</button><br />
+            <button onClick={spendCredit(spendAmount)} disabled={spinningRef.current}>bet</button><br />{customerAlert}
             {debug ? debugOutput : ""}
             <DisplayWheelSet startPosition={currentPosition} debug={debug} />
         </div>
