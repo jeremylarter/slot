@@ -13,17 +13,10 @@ const RotateWheelSet = (props) => {
     const dummyRef = useRef();
     const deltaRef = useRef({last:0, change:0});
     const loopMax = 10000;//infinite loop guard: maximum number of elapsed frames without settling on next position before we quit
-    const wheelIndexMax = 11; //todo: remove this and use DisplayWheelSet values.
 
-    const getRandomWheelIndex = () => Math.floor(Math.random() * wheelIndexMax);
-    const getNextPosition = () => ({
-        left: getRandomWheelIndex(),
-        center: getRandomWheelIndex(),
-        right: getRandomWheelIndex()
-    });
     const [currentPosition, setCurrentPosition] = useState(props.startPosition);
     //think of positionRef like a state shadow model available outside of render cycles.
-    const positionRef = useRef({position: props.startPosition, next: getNextPosition()});
+    const positionRef = useRef({position: props.startPosition, next: undefined});
     const initTimePassed = {left: false, center: false, right: false};
     const initWheelsDeltaRef = {last:0, change:0, timePassed: initTimePassed};
     const wheelsDeltaRef = useRef(initWheelsDeltaRef);
@@ -54,12 +47,14 @@ const RotateWheelSet = (props) => {
             }
         }
         setTimer(() => Math.floor(deltaRef.current.change));
-        if (deltaRef.current.change > minDelay) {
+        const hasNext = positionRef.current.next;
+        if (deltaRef.current.change > minDelay && hasNext) {
             deltaRef.current.last = time;
             const rightIncrement = wheelIncrement(positionRef.current.position.right % 11, positionRef.current.next.right, wheelsDeltaRef.current.timePassed.right);
             if (rightIncrement === 0) {
                 //cannot stop just because right wheel timer is up, need to wait to right position is settled on.
                 spinningRef.current = false;
+                props.betFinished();
             }
             positionRef.current.position = {
                 left: positionRef.current.position.left + wheelIncrement(positionRef.current.position.left % 11, positionRef.current.next.left, wheelsDeltaRef.current.timePassed.left),
@@ -73,7 +68,7 @@ const RotateWheelSet = (props) => {
             requestRef.current = window.requestAnimationFrame(loop);
         }
         dummyRef.current = spinCounter;//used to stop React complaining
-    }, [spinCounter]);//end loop callback
+    }, [spinCounter, props]);//end loop callback
 
     // const insertCredit = creditAmount => props.setCredit(_ => _ + creditAmount);
     // const spendCredit = creditAmount => props.setCredit(_ => _ - creditAmount);
@@ -94,14 +89,16 @@ const RotateWheelSet = (props) => {
         //const comparisonPosition = {left: positionRef.current.position.left % 11, center: positionRef.current.position.center % 11, right: positionRef.current.position.right % 11};
         //console.log("current: ", comparisonPosition, positionRef.current.position);
         //positionRef.current.next = log("spin: ", getNextPosition)();
-        positionRef.current.next = getNextPosition();
+        positionRef.current.next = props.getNextPosition();
     }
 
     useEffect(() => {
         if (functionRef.current === undefined) {
             spinningRef.current = false;
         } else { //delay the loop until after first page load.
-            requestRef.current = window.requestAnimationFrame(loop);
+            if (spinningRef.current) {//todo: check what causes useEffect to trigger when spinningRef.current === false
+                requestRef.current = window.requestAnimationFrame(loop);
+            }
         }
         functionRef.current = 0;//todo: rename this as loopGuard. When developing, we do not want an infinite loop.
 
