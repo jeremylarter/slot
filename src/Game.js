@@ -41,6 +41,7 @@ const Game = () => {
             targetPosition.current = getNextPosition();
             setBetSwitch(_ => !_);//toggle the switch e.g. off - on, on - off
             setBetInProgress(() => true);
+            setWin(false);
         } else {
             setCustomerAlert("Please insert credit to continue.");
         }
@@ -48,8 +49,12 @@ const Game = () => {
     const [betInProgress, setBetInProgress] = useState(false);
     const betFinished = () => {
         //console.log('target position found');
+        //todo: calculate the win amount, if any
         setBetInProgress(() => false);
-        setWin(() => true);
+        if (Math.random() > 0.5) {
+            setWin(() => true);
+            insertCredit(1)();
+        }
     };
 
     return (
@@ -69,7 +74,7 @@ const Game = () => {
                 targetPosition={targetPosition.current}
                 debug={debug}
             />
-            <DisplayWin win={win} />
+            <DisplayWin win={win} amount={1} />
         </DisplayCredit>
     );
 }
