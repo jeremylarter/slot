@@ -3,15 +3,16 @@ import DisplayWheelSet from './DisplayWheelSet';
 import FramesPerSecond from './FramesPerSecond';
 
 const RotateWheelSet = ({targetPosition, betSwitch, callback, ...props}) => {
-    const minDelay = 100;//number of milliseconds that it takes an item to move up one spot.
-    const minWheelSpinTime = 1000;//todo: change this to different intervals - 4000, 1000, 1000
+    const minDelay = 90;//number of milliseconds that it takes an item to move up one spot.
+    //it might look better if the minDelay is not constant e.g. wind up to fastest - steady - wind down to stop
+    const wheelIndex = useRef(0);
     const [timer, setTimer] = useState(minDelay);//todo: what is the value proposition for useState over useRef?
     const [spinCounter, setSpinCounter] = useState(0);
     const spinningRef = useRef();
     const requestRef = useRef();
     const loopGuardRef = useRef(0);
     const deltaRef = useRef({last:0, change:0});
-    const loopMax = 10000;//infinite loop guard: maximum number of elapsed frames without settling on next position before we quit
+    const loopMax = 5000;//infinite loop guard: maximum number of elapsed frames without settling on next position before we quit
 
     const [currentPosition, setCurrentPosition] = useState(props.startPosition);
     //think of positionRef like a state shadow model available outside of render cycles.
@@ -22,6 +23,7 @@ const RotateWheelSet = ({targetPosition, betSwitch, callback, ...props}) => {
     const deltaTime = useRef(0);
     const flipped = useRef();
     const waitForWheelStop = useRef({left: false, center: false, right: false});
+    const settleRef = useRef([0,0,0]);
     const cancelSpin = () => window.cancelAnimationFrame(requestRef.current);
 //https://reactjs.org/docs/composition-vs-inheritance.html
 //https://w3bits.com/svg-sprites/
@@ -31,38 +33,35 @@ const RotateWheelSet = ({targetPosition, betSwitch, callback, ...props}) => {
 //https://www.javascriptstuff.com/component-communication/#3-callback-functions
 //https://reactjs.org/docs/context.html
     useEffect(() => {
+        const minWheelSpinTime = [2500, 800, 1600];
         const loop = time => {
-            console.log('loop');
+            //console.log('loop');
             //console.log(time);
-            //todo: the time delay and position settled logic is wrong.
             deltaTime.current = time;
             if (wheelsDeltaRef.current.last === 0) {
-                //first iteration, the change should be zero
-                wheelsDeltaRef.current.last = time;
+                wheelsDeltaRef.current.last = time;//first iteration, the change should be zero
             }
             deltaRef.current.change = time - deltaRef.current.last;
             wheelsDeltaRef.current.change = time - wheelsDeltaRef.current.last;
             //console.log("wheelsDeltaRef.current.change: ", wheelsDeltaRef.current.change);
-            if (wheelsDeltaRef.current.change > minWheelSpinTime && 
+            if (wheelsDeltaRef.current.change > minWheelSpinTime[wheelIndex.current] && 
                 !waitForWheelStop.current.left && 
                 !waitForWheelStop.current.center &&
                 !waitForWheelStop.current.right) {
                 //console.log('stopping wheel from now', wheelsDeltaRef.current.change);
+                wheelIndex.current = (wheelIndex.current + 1) % minWheelSpinTime.length;
                 if (!wheelsDeltaRef.current.timePassed.left) {
                     wheelsDeltaRef.current.timePassed.left = true;
                     waitForWheelStop.current.left = true;
-                    console.log('stopping left wheel from now', wheelsDeltaRef.current.change);
                 } else {
                     //center or right wheel
                     if (!wheelsDeltaRef.current.timePassed.center) {
                         wheelsDeltaRef.current.timePassed.center = true;
                         waitForWheelStop.current.center = true;
-                        console.log('stopping center wheel from now', wheelsDeltaRef.current.change);
                     } else {
                         //right
                         wheelsDeltaRef.current.timePassed.right = true;
                         waitForWheelStop.current.right = true;
-                        console.log('stopping right wheel from now', wheelsDeltaRef.current.change);
                     }
                 }
             }
@@ -77,20 +76,20 @@ const RotateWheelSet = ({targetPosition, betSwitch, callback, ...props}) => {
                 //check for stop and reset min wait for the next wheel
                 if (waitForWheelStop.current.left && leftIncrement === 0 && centerIncrement === 1) {
                     wheelsDeltaRef.current.last = time;
-                    console.log('left settled', wheelsDeltaRef.current.change);
+                    settleRef.current[0] = Math.floor(wheelsDeltaRef.current.change);
                     waitForWheelStop.current.left = false;
                 }
                 if (waitForWheelStop.current.center && centerIncrement === 0 && rightIncrement === 1) {
                     wheelsDeltaRef.current.last = time;
-                    console.log('center settled', wheelsDeltaRef.current.change);
+                    settleRef.current[1] = Math.floor(wheelsDeltaRef.current.change);
                     waitForWheelStop.current.center = false;
                 }
 
                 if (rightIncrement === 0) {
                     //wait to right position is settled on before stopping
                     spinningRef.current = false;
-                    console.log('right settled', wheelsDeltaRef.current.change);
-                    waitForWheelStop.current.right = false;//todo: I think this is not needed...
+                    settleRef.current[2] = Math.floor(wheelsDeltaRef.current.change);
+                    waitForWheelStop.current.right = false;//todo: I think this is not needed if it is reset elsewhere
                 }
                 positionRef.current.position = {
                     left: positionRef.current.position.left + leftIncrement,
@@ -121,8 +120,8 @@ const RotateWheelSet = ({targetPosition, betSwitch, callback, ...props}) => {
             const resetTimePassed = {left: false, center: false, right: false};
             const resetWheelsDeltaRef = {last:0, change:0, timePassed: resetTimePassed};
             wheelsDeltaRef.current = resetWheelsDeltaRef;
-            const comparisonPosition = {left: positionRef.current.position.left % 11, center: positionRef.current.position.center % 11, right: positionRef.current.position.right % 11};
-            console.log("current: ", comparisonPosition, positionRef.current.position, targetPosition);
+            //const comparisonPosition = {left: positionRef.current.position.left % 11, center: positionRef.current.position.center % 11, right: positionRef.current.position.right % 11};
+            //console.log("current: ", comparisonPosition, positionRef.current.position, targetPosition);
             positionRef.current.next = targetPosition;
             setSpinCounter(previous => previous + 1);//todo: what happens when overflow occurs? max float + 1?
             spinningRef.current = true;//note, the reason this works is because spinCounter triggers a render, and at that time the ref is evaluated.
@@ -131,28 +130,28 @@ const RotateWheelSet = ({targetPosition, betSwitch, callback, ...props}) => {
         }
 
         return () => {
-            console.log('dispose rotate wheel set?', requestRef.current);
+            //console.log('dispose rotate wheel set?', requestRef.current);
             //todo: why are there 2 dispose calls for the initial spin?
             loopGuardRef.current = 0;
-            waitForWheelStop.current = {left: false, center: false, right: false};
+            //waitForWheelStop.current = {left: false, center: false, right: false};
             //stop the animation when disposed?
             //if (cancelAnimationFrameId) window.cancelAnimationFrame(cancelAnimationFrameId);
         };
     }, [betSwitch, callback, targetPosition]);//todo: maybe instead of betSwitch, targetPosition could be used? 
     //Nope, because it is possible to get the same spin twice in a row and we need the spin to trigger
-    const debug = true;
     const debugOutput = (
         <>
             <button onClick={cancelSpin} disabled={!spinningRef.current}>break</button><br />
             {`count: ${spinCounter} ${spinningRef.current ? "spinning" : "stopped"} ${timer} `}<br />
+            {`time to settle: ${settleRef.current[0]}, ${settleRef.current[1]}, ${settleRef.current[2]}`}<br />
             <FramesPerSecond time={deltaTime.current} animationId={spinCounter} /><br />
         </>
     );
 
     return (
         <div>
-            {debug ? debugOutput : ""}
-            <DisplayWheelSet startPosition={currentPosition} debug={debug} />
+            {props.debug ? debugOutput : null}
+            <DisplayWheelSet startPosition={currentPosition} debug={props.debug} />
         </div>
     );
 }

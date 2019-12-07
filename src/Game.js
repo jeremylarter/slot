@@ -4,8 +4,9 @@ import DisplayCredit from './DisplayCredit';
 import DisplayWin from './DisplayWin';
 
 const Game = () => {
+    const debug = false;
     const render = useRef(0);
-    const [credit, setCredit] = useState(50);
+    const [credit, setCredit] = useState(2);
     const insertCreditAmount = 1;
     const insertCredit = creditAmount => () => setCredit(_ => _ + creditAmount);
 
@@ -14,7 +15,7 @@ const Game = () => {
     const [betSwitch, setBetSwitch] = useState(false);//todo: initialise only once
     const getRandomWheelIndex = () => Math.floor(Math.random() * wheelIndexMax);
     const getNextPosition = () => {
-        console.log('getNextPosition');
+        //console.log('getNextPosition');
         return {
             left: getRandomWheelIndex(),
             center: getRandomWheelIndex(),
@@ -33,7 +34,7 @@ const Game = () => {
     const [customerAlert, setCustomerAlert] = useState("");
     const targetPosition = useRef();
     const spendCredit = spendAmount => () => {
-        console.log('spend amount');
+        //console.log('spend amount');
         if (credit > 0) {
             setCustomerAlert("");
             reduceCredit(spendAmount)();
@@ -46,14 +47,14 @@ const Game = () => {
     }
     const [betInProgress, setBetInProgress] = useState(false);
     const betFinished = () => {
-        console.log('target position found');
+        //console.log('target position found');
         setBetInProgress(() => false);
         setWin(() => true);
     };
 
     return (
         <DisplayCredit credit={credit} >
-            Game: {render.current++}
+            {debug ? `Game: ${render.current++}` : null}
             <button onClick={insertCredit(insertCreditAmount)}>insert {insertCreditAmount} credit{insertCreditAmount > 1 ? "s" : ""}</button><br />
             <button onClick={spendCredit(spendAmount)} disabled={betInProgress}>bet</button><br />{customerAlert}
 
@@ -66,6 +67,7 @@ const Game = () => {
                 }}
                 credit={credit} setCredit={setCredit}
                 targetPosition={targetPosition.current}
+                debug={debug}
             />
             <DisplayWin win={win} />
         </DisplayCredit>
