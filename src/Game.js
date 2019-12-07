@@ -2,8 +2,17 @@ import React, {useState, useRef} from 'react';
 import RotateWheelSet from './RotateWheelSet'
 import DisplayCredit from './DisplayCredit';
 import DisplayWin from './DisplayWin';
+import DisplayPayouts from './DisplayPayouts';
 
 const Game = () => {
+    //some ideas for improvements
+    //add storybook to ensure single responsibility
+    //add react-testing-library tests e.g. last bet with win allows continued play
+    //add drag and drop win configuration selector. e.g. drag bar, bar, bar and set a payout amount - save to local storage
+    //add drag and drop wheel item selector
+    //add payout odds for configuration sets - tell people how they work
+    //add sliders for config values e.g. time for wheel to settle
+    //add smoothing to moving items - greensock?
     const debug = false;
     const render = useRef(0);
     const [credit, setCredit] = useState(2);
@@ -56,6 +65,8 @@ const Game = () => {
             insertCredit(1)();
         }
     };
+    const [displayPayouts, setDisplayPayouts] = useState(false);
+    const payouts = displayPayouts ? <DisplayPayouts /> : null;
 
     return (
         <DisplayCredit credit={credit} >
@@ -75,6 +86,8 @@ const Game = () => {
                 debug={debug}
             />
             <DisplayWin win={win} amount={1} />
+            <button onClick={() => {setDisplayPayouts(_ => !_);}} disabled={betInProgress}>payouts</button><br />
+            {payouts}
         </DisplayCredit>
     );
 }

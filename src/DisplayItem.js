@@ -5,6 +5,7 @@ import Bell from './Bell';
 import Cherry from './Cherry';
 import Orange from './Orange';
 import Plum from './Plum';
+import Any from './Any';
 
 const DisplayItem = (props) => {
     var item = <Bar />;
@@ -21,14 +22,16 @@ const DisplayItem = (props) => {
         case itemType.plum:
             item = <Plum />;
             break;
+        case itemType.cherry:
+            item = <Cherry />;
+            break;
         default:
-            item = <Cherry />
-
+            item = <Any text={props.text} />;
     }
     const render = useRef(0);
     return (
         <div>
-            {props.debug ? render.current++ : ""}
+            {props.debug ? render.current++ : null}
             {item}
         </div>
     );
