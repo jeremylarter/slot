@@ -8,25 +8,25 @@ import Plum from './Plum';
 import Any from './Any';
 
 const DisplayItem = (props) => {
-    var item = <Bar />;
+    var item = <Bar win={props.win} />;
     switch (props.item) {
         case itemType.bar:
-            item = <Bar />;
+            item = <Bar win={props.win} />;
             break;
         case itemType.bell:
-            item = <Bell />;
+            item = <Bell win={props.win} />;
             break;
         case itemType.orange:
-            item = <Orange />;
+            item = <Orange win={props.win} />;
             break;
         case itemType.plum:
-            item = <Plum />;
+            item = <Plum win={props.win} />;
             break;
         case itemType.cherry:
-            item = <Cherry />;
+            item = <Cherry win={props.win} />;
             break;
         default:
-            item = <Any text={props.text} />;
+            item = <Any win={props.win} text={props.text} />;
     }
     const render = useRef(0);
     return (

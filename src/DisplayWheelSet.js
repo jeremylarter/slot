@@ -116,7 +116,9 @@ const DisplayWheelSet = (props) => {
             <ul key={_.key} style={{ listStyleType:"none", display: "inline-block" }}>
                 {offsetList.map( offset => 
                 <li key={_.key + offset}>
-                    <DisplayItem item={_.currentWheel[getWheelIndex(_.currentPosition, offset, _.maxItems)]} debug={props.debug} />
+                    <DisplayItem item={_.currentWheel[getWheelIndex(_.currentPosition, offset, _.maxItems)]}
+                        win={props.win && offset === offsetList[1]}
+                        debug={props.debug} />
                 </li>)}
             </ul>)}
             

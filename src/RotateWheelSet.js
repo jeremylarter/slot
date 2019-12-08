@@ -151,7 +151,7 @@ const RotateWheelSet = ({targetPosition, betSwitch, callback, ...props}) => {
     return (
         <div>
             {props.debug ? debugOutput : null}
-            <DisplayWheelSet startPosition={currentPosition} debug={props.debug} />
+            <DisplayWheelSet startPosition={currentPosition} debug={props.debug} win={props.win} />
         </div>
     );
 }

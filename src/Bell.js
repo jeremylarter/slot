@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Bell = () => {
+const Bell = props => {
+    const animationClass = props.win ? "animated-bell" : "";
     return (
         <div>
             <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -40,7 +41,7 @@ const Bell = () => {
                 <desc>Update of bell pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
                 <style>
                     {`
-                    .bell-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+                    .bell-background {stroke: #000000; paint-order: stroke;}
                     .bell1 {stroke: #0008fc;}
                     .bell2 {stroke: #0010fc;}
                     .bell3 {stroke: #0018fc;}
@@ -66,9 +67,20 @@ const Bell = () => {
                     .bell23 {stroke: #00b8fc;}
                     .bell24 {stroke: #00c0fc;}
                     .bell25 {stroke: #00c8fc;}
+                    @keyframes winner {
+                        from {fill: rgb(0,0,0);}
+                        to {fill: rgb(255,255,255);}
+                    }
+                    .animated-bell {
+                        animation-name: winner;
+                        animation-delay: 3s;
+                        animation-duration: 4s;
+                        animation-fill-mode: forwards;
+                        animation-iteration-count: 3;
+                    }
                 `}
                 </style>
-                <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-bell" />
+                <use className={animationClass} width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-bell" />
             </svg>
         </div>
     );
