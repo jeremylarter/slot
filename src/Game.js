@@ -3,7 +3,7 @@ import RotateWheelSet from './RotateWheelSet'
 import DisplayCredit from './DisplayCredit';
 import DisplayWin from './DisplayWin';
 import DisplayPayouts from './DisplayPayouts';
-import {calculateWinAmount} from './DisplayWheelSet';
+import {calculateWinAmount, itemType} from './DisplayWheelSet';
 
 const Game = () => {
     //some ideas for improvements
@@ -44,18 +44,28 @@ const Game = () => {
     const [customerAlert, setCustomerAlert] = useState("");
     const targetPosition = useRef();
     const winAmountRef = useRef(0);
-
+    // const testWins = [
+    //     { left: 1, center: 4, right: 2 },//bell bar bell win
+    //     { left: 0, center: 4, right: 4 },//bar win
+    //     { left: 1, center: 5, right: 2 },//bell win
+    //     { left: 2, center: 0, right: 1 },//cherry win 5
+    //     { left: 3, center: 1, right: 3 },//orange win
+    //     { left: 4, center: 2, right: 0 },//plum win
+    //     { left: 0, center: 4, right: 1 },//cherry win 2
+    //     { left: 2, center: 4, right: 4 },//cherry win 2
+    //     { left: 2, center: 4, right: 1 },//cherry win 2
+    //     { left: 2, center: 0, right: 4 },//cherry win 5
+    //     { left: 0, center: 0, right: 1 },//cherry win 5
+    // ];
+    // const testWinIndex = useRef(0);
     const spendCredit = spendAmount => () => {
         //console.log('spend amount');
         if (credit > 0) {
             setCustomerAlert("");
             reduceCredit(spendAmount)();
             targetPosition.current = getNextPosition();
-            // targetPosition.current = {
-            //     left: 0,
-            //     center: 4,
-            //     right: 4
-            // }
+            // targetPosition.current = testWins[testWinIndex.current];
+            // testWinIndex.current = (testWinIndex.current + 1) % testWins.length;
             setBetSwitch(_ => !_);//toggle the switch e.g. off - on, on - off
             setBetInProgress(() => true);
             setWin(false);
