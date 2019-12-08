@@ -44,6 +44,49 @@ const wheel = {
         itemType.orange        
     ]
 };
+
+export const calculateWinAmount = wheelIndex => {
+    const getItemTypes = wheelIndex => {
+        return [
+            wheel.left[wheelIndex.left],
+            wheel.center[wheelIndex.center],
+            wheel.right[wheelIndex.right]
+        ];
+    };
+    const allMatching = payLine => {
+        return payLine[0] === payLine[1] && payLine[1] === payLine[2];
+    };
+    const payLine = getItemTypes(wheelIndex);
+    const left = 0, center = 1, right = 2;
+    if (payLine[left] === itemType.cherry || payLine[right] === itemType.cherry) {
+        if (payLine[center] === itemType.cherry) {
+            return 5;
+        }
+        return 2;
+    }
+    if (payLine[left] === itemType.bell && 
+        payLine[center] === itemType.bar && 
+        payLine[right] === itemType.bell) {
+        return 25;
+    }
+    if (allMatching(payLine)) {
+        switch (payLine[left]) {
+            case itemType.plum:
+                return 10;
+            case itemType.orange:
+                return 14;
+            case itemType.bell:
+                return 20;
+            case itemType.bar:
+                return 50;
+            default:
+                return 5;//should never get here, but only other option is 3 x cherry
+        }
+    }
+    return 0;
+}
+
+
 const DisplayWheelSet = (props) => {
     // let index=1;
     const wheelSet = [

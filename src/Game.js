@@ -3,6 +3,7 @@ import RotateWheelSet from './RotateWheelSet'
 import DisplayCredit from './DisplayCredit';
 import DisplayWin from './DisplayWin';
 import DisplayPayouts from './DisplayPayouts';
+import {calculateWinAmount} from './DisplayWheelSet';
 
 const Game = () => {
     //some ideas for improvements
@@ -42,15 +43,23 @@ const Game = () => {
     const reduceCredit = spendAmount => () => setCredit(_ => _ - spendAmount);
     const [customerAlert, setCustomerAlert] = useState("");
     const targetPosition = useRef();
+    const winAmountRef = useRef(0);
+
     const spendCredit = spendAmount => () => {
         //console.log('spend amount');
         if (credit > 0) {
             setCustomerAlert("");
             reduceCredit(spendAmount)();
             targetPosition.current = getNextPosition();
+            // targetPosition.current = {
+            //     left: 0,
+            //     center: 4,
+            //     right: 4
+            // }
             setBetSwitch(_ => !_);//toggle the switch e.g. off - on, on - off
             setBetInProgress(() => true);
             setWin(false);
+            winAmountRef.current = calculateWinAmount(targetPosition.current);//can this be async?
         } else {
             setCustomerAlert("Please insert credit to continue.");
         }
@@ -60,10 +69,14 @@ const Game = () => {
         //console.log('target position found');
         //todo: calculate the win amount, if any
         setBetInProgress(() => false);
-        if (Math.random() > 0.5) {
+        if (winAmountRef.current > 0) {
             setWin(() => true);
-            insertCredit(1)();
+            insertCredit(winAmountRef.current)();
         }
+        // if (Math.random() > 0.5) {
+        //     setWin(() => true);
+        //     insertCredit(1)();
+        // }
     };
     const [displayPayouts, setDisplayPayouts] = useState(false);
     const payouts = displayPayouts ? <DisplayPayouts /> : null;
@@ -85,7 +98,7 @@ const Game = () => {
                 targetPosition={targetPosition.current}
                 debug={debug}
             />
-            <DisplayWin win={win} amount={1} />
+            <DisplayWin win={win} amount={winAmountRef.current} />
             <button onClick={() => {setDisplayPayouts(_ => !_);}} disabled={betInProgress}>payouts</button><br />
             {payouts}
         </DisplayCredit>
