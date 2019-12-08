@@ -69,14 +69,14 @@ const Bell = props => {
                     .bell25 {stroke: #00c8fc;}
                     @keyframes winner {
                         from {fill: rgb(0,0,0);}
-                        to {fill: rgb(255,255,255);}
+                        to {fill: gold;}
                     }
                     .animated-bell {
                         animation-name: winner;
                         animation-delay: 3s;
                         animation-duration: 4s;
-                        animation-fill-mode: forwards;
                         animation-iteration-count: 3;
+                        animation-fill-mode: forwards;
                     }
                 `}
                 </style>
