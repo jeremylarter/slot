@@ -3,7 +3,7 @@ import RotateWheelSet from './RotateWheelSet'
 import DisplayCredit from './DisplayCredit';
 import DisplayWin from './DisplayWin';
 import DisplayPayouts from './DisplayPayouts';
-import {calculateWinAmount, itemType} from './DisplayWheelSet';
+import {calculateWinAmount} from './DisplayWheelSet';
 
 const Game = () => {
     //some ideas for improvements
@@ -25,7 +25,6 @@ const Game = () => {
     const [betSwitch, setBetSwitch] = useState(false);//todo: initialise only once
     const getRandomWheelIndex = () => Math.floor(Math.random() * wheelIndexMax);
     const getNextPosition = () => {
-        //console.log('getNextPosition');
         return {
             left: getRandomWheelIndex(),
             center: getRandomWheelIndex(),
@@ -76,17 +75,11 @@ const Game = () => {
     }
     const [betInProgress, setBetInProgress] = useState(false);
     const betFinished = () => {
-        //console.log('target position found');
-        //todo: calculate the win amount, if any
         setBetInProgress(() => false);
         if (winAmountRef.current > 0) {
             setWin(() => true);
             insertCredit(winAmountRef.current)();
         }
-        // if (Math.random() > 0.5) {
-        //     setWin(() => true);
-        //     insertCredit(1)();
-        // }
     };
     const [displayPayouts, setDisplayPayouts] = useState(false);
     const payouts = displayPayouts ? <DisplayPayouts /> : null;
