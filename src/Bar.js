@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Bar = ({mykey, ...props}) => {
-
-    const className = props.win ? "animated-bar" : "bar-background";
+    //if (props.win) console.log(`animated-bar${mykey}`);
+    const className = props.win ? `animated-bar${mykey}` : "bar-background";
     return (
         <div>
             <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -65,13 +65,13 @@ const Bar = ({mykey, ...props}) => {
                     .bar27 {stroke: #b0b0fc;}
                     .bar28 {stroke: #b8b8fc;}
                     .bar29 {stroke: #c0c0fc;}
-                    @keyframes winner {
+                    @keyframes winner${mykey} {
                         from {fill: rgb(255,255,255);}
                         to {fill: gold;}
                     }
-                    .animated-bar {
+                    .animated-bar${mykey} {
                         fill: rgb(255,255,255);
-                        animation-name: winner;
+                        animation-name: winner${mykey};
                         animation-delay: 3s;
                         animation-duration: 4s;
                         animation-iteration-count: 3;
