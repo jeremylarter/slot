@@ -40,7 +40,7 @@ const Bar = ({mykey, ...props}) => {
                 <title>bar symbol instance</title>
                 <desc>Update of bar pixel graphics to modern SVG. Contains a bar graphic with lines drawn vertically down.</desc>
                 <style>{`
-                    .bar-background {stroke: white; paint-order: stroke;}
+                    .bar-background {stroke: white; paint-order: stroke; fill: rgb(255, 255, 255)}
                     .bar2 {stroke: #0808fc;}
                     .bar3 {stroke: #1010fc;}
                     .bar4 {stroke: #1818fc;}
@@ -70,6 +70,7 @@ const Bar = ({mykey, ...props}) => {
                         to {fill: gold;}
                     }
                     .animated-bar {
+                        fill: rgb(255,255,255);
                         animation-name: winner;
                         animation-delay: 3s;
                         animation-duration: 4s;
