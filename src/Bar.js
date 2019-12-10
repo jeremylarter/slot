@@ -1,19 +1,15 @@
 import React from 'react';
 
-const Bar = (props) => {
-    //todo: there is a bug with the background animation because there are multiple symbols with the same id in the dom
-    //maybe load once and then use rather than re-define each time?
-    //otherwise, set a unique key for the symbol
-    //it makes an interesting effect where the animation plays at the same time for each instance when it applies.
-    let symbolName = "symbol-bar";
-    const animationClass = props.win ? "animated-bar" : "";
+const Bar = ({mykey, ...props}) => {
+
+    const className = props.win ? "animated-bar" : "bar-background";
     return (
         <div>
             <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <defs>
-                    <symbol id={symbolName} viewBox="0.5 0 30 30">
+                    <symbol id={mykey} viewBox="0.5 0 30 30">
                         <g>
-                            <path d="M 0,0 V 30 H 30 V 0z" className={animationClass} />
+                            <path d="M 0,0 V 30 H 30 V 0z" className={className} />
                             <path d="M 2,7 V 24" className="bar2" />
                             <path d="M 3,7 V 24" className="bar3" />
                             <path d="M 4,7 V 10 M 4,14 V 17 M 4,21 V 24" className="bar4" />
@@ -82,7 +78,7 @@ const Bar = (props) => {
                     }
                 `}
                 </style>
-                <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref={"#"+symbolName} />
+                <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref={"#"+mykey} />
             </svg>
         </div>
     );

@@ -7,26 +7,26 @@ import Orange from './Orange';
 import Plum from './Plum';
 import Any from './Any';
 
-const DisplayItem = (props) => {
-    var item = <Bar win={props.win} />;
+const DisplayItem = ({mykey, win, ...props}) => {
+    var item = <Bar win={win} mykey={mykey} />;
     switch (props.item) {
         case itemType.bar:
-            item = <Bar win={props.win} />;
+            item = <Bar win={win} mykey={mykey} />;
             break;
         case itemType.bell:
-            item = <Bell win={props.win} />;
+            item = <Bell win={win} mykey={mykey} />;
             break;
         case itemType.orange:
-            item = <Orange win={props.win} />;
+            item = <Orange win={win} mykey={mykey} />;
             break;
         case itemType.plum:
-            item = <Plum win={props.win} />;
+            item = <Plum win={win} mykey={mykey} />;
             break;
         case itemType.cherry:
-            item = <Cherry win={props.win} />;
+            item = <Cherry win={win} mykey={mykey} />;
             break;
         default:
-            item = <Any win={props.win} text={props.text} />;
+            item = <Any win={win} text={props.text} mykey={mykey} />;
     }
     const render = useRef(0);
     return (

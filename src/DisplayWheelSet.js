@@ -118,6 +118,7 @@ const DisplayWheelSet = (props) => {
                 <li key={_.key + offset}>
                     <DisplayItem item={_.currentWheel[getWheelIndex(_.currentPosition, offset, _.maxItems)]}
                         win={props.win && offset === offsetList[1]}
+                        mykey={"item" + _.key + offset}
                         debug={props.debug} />
                 </li>)}
             </ul>)}
