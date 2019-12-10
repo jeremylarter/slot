@@ -3,11 +3,13 @@ import React from 'react';
 const Bar = ({mykey, ...props}) => {
     //if (props.win) console.log(`animated-bar${mykey}`);
     const className = props.win ? `animated-bar${mykey}` : "bar-background";
+    const symbolId = mykey === undefined ? "bar-symbol" : mykey;
+    console.log({className});
     return (
         <div>
             <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <defs>
-                    <symbol id={mykey} viewBox="0.5 0 30 30">
+                    <symbol id={symbolId} viewBox="0.5 0 30 30">
                         <g>
                             <path d="M 0,0 V 30 H 30 V 0z" className={className} />
                             <path d="M 2,7 V 24" className="bar2" />
@@ -79,7 +81,7 @@ const Bar = ({mykey, ...props}) => {
                     }
                 `}
                 </style>
-                <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref={"#"+mykey} />
+                <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref={"#"+symbolId} />
             </svg>
         </div>
     );
