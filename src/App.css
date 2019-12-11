@@ -5,10 +5,12 @@
 .App-logo {
   height: 100px;
 }
+
 Body {
   background-color: #222222;
   color: white;
 }
+
 .App-header {
   background-color: #282c34;
   display: flex;

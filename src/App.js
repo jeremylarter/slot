@@ -8,11 +8,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={slot} className="App-logo" alt="slot" />
-        <p>
-          Computing III Slot Machine Simulator
-        </p>
-        </header>
-        <Game />
+        <h1>
+          Slot Machine Simulator
+        </h1>
+      </header>
+      <Game />
     </div>
   );
 }
