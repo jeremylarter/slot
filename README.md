@@ -1,3 +1,19 @@
+# Slot Machine Simulator
+
+This is a port of an assignment from 1992. The original code was written in [Microsoft QuickPascal](https://en.wikipedia.org/wiki/Microsoft_Pascal). The original documentation was done in some editor that I cannot recall. Any modern editor should be able to get the text content from the doc files included. For those interested in getting the screen shots, the doc format is most likely an early version of [Works for MS-DOS](https://en.wikipedia.org/wiki/Microsoft_Works#Works_for_MS-DOS). Other editors I used back in the day were [MS-DOS Editor](https://en.wikipedia.org/wiki/MS-DOS_Editor) and [edlin](https://en.wikipedia.org/wiki/Edlin).
+
+## Purpose of port?
+
+It was one of my favorite assignments that showcased VGA graphics. The screen resolution was just 320x200 (like an Apple watch but on a full size monitor). The draw for me was that it could display 256 colours from a palette of about 65,000.
+
+Today I am interested in React, SVG, CSS animation, Azure cloud hosting and accessibility. So doing a port allows me to explore these areas of interest in a well defined scope. I created the original graphics, so I do not have to worry about copyright or creating new art.
+
+## Simulation specifications
+
+The machine parameters were given to me as part of the assignment and I implemented them "as is." The result is a slot machine that pays out about 150%, so it is not a realistic simulation. Rather, it is just an acedemic exercise. Doing this assignment taught me that real world machines will take your money because they pay out less than 100%.
+
+## Port technology
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
