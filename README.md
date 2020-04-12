@@ -16,7 +16,7 @@ For the image conversion to [SVG][], I have kept the original blockiness. This s
 
 ## Simulation specifications
 
-The machine parameters were given to me as part of the assignment and I implemented them "as is." The result is a slot machine that pays out about 150%, so it is not a realistic simulation. Rather, it is just an acedemic exercise. Doing this assignment taught me that real world machines will take your money because they pay out less than 100%.
+The machine parameters were given to me as part of the assignment and I implemented them "as is." The result is a slot machine that pays out about 150%, so it is not a realistic simulation. Rather, it is just an academic exercise. Doing this assignment taught me that real world machines will take your money because they pay out less than 100%.
 
 ## Port technology
 
