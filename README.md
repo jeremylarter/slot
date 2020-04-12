@@ -4,9 +4,15 @@ This is a port of an assignment from 1992. The original code was written in [Mic
 
 ## Purpose of port?
 
-It was one of my favorite assignments that showcased VGA graphics. The screen resolution was just 320x200 (like an Apple watch but on a full size monitor). The draw for me was that it could display 256 colours from a palette of about 65,000.
+It was one of my favorite assignments that showcased [VGA graphics](https://en.wikipedia.org/wiki/Mode_13h). The screen resolution was just 320x200 (like an Apple watch but on a full size monitor). The draw for me was that it could display 256 colours from a palette of about 65,000.
 
 Today I am interested in React, SVG, CSS animation, Azure cloud hosting and accessibility. So doing a port allows me to explore these areas of interest in a well defined scope. I created the original graphics, so I do not have to worry about copyright or creating new art.
+
+For the image conversion to [SVG][], I have kept the original blockiness. This style has had a resurgence due to games like Minecraft <sup>[(1)](#disclaimer)</sup> and various spin off titles.
+
+[svg]: https://en.wikipedia.org/wiki/Scalable_Vector_Graphics "Scaleable Vector Graphics"
+
+<a name="disclaimer"></a><sup>(1)</sup> [NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG](https://account.mojang.com/terms?ref=ft#brand).
 
 ## Simulation specifications
 
