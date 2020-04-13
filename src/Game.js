@@ -87,7 +87,6 @@ const Game = () => {
   return (
     <DisplayCredit credit={credit} >
       {debug ? `Game: ${render.current++}` : null}
-      <button onClick={insertCredit(insertCreditAmount)}>insert {insertCreditAmount} credit{insertCreditAmount > 1 ? "s" : ""}</button><br />
       <button onClick={spendCredit(spendAmount)} disabled={betInProgress}>bet</button><br />{customerAlert}
 
       <RotateWheelSet
@@ -103,6 +102,7 @@ const Game = () => {
         debug={debug}
       />
       <DisplayWin win={win} amount={winAmountRef.current} />
+      <button onClick={insertCredit(insertCreditAmount)}>insert {insertCreditAmount} credit{insertCreditAmount > 1 ? "s" : ""}</button><br />
       <button onClick={() => { setDisplayPayouts(_ => !_); }} disabled={betInProgress}>payouts</button><br />
       {payouts}
     </DisplayCredit>
