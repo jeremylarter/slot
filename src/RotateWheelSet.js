@@ -3,10 +3,12 @@ import DisplayWheelSet from './DisplayWheelSet';
 import FramesPerSecond from './FramesPerSecond';
 
 const RotateWheelSet = ({ targetPosition, betSwitch, callback, ...props }) => {
-  const minDelay = 90;//number of milliseconds that it takes an item to move up one spot.
+  //debug
+  const [timer, setTimer] = useState(0);//todo: what is the value proposition for useState over useRef?
+
   //it might look better if the minDelay is not constant e.g. wind up to fastest - steady - wind down to stop
+  const minWheelDelay = [30, 30, 30];//number of milliseconds that it takes an item to move up one spot in each wheel.
   const wheelIndex = useRef(0);
-  const [timer, setTimer] = useState(minDelay);//todo: what is the value proposition for useState over useRef?
   const [spinCounter, setSpinCounter] = useState(0);
   const spinningRef = useRef();
   const requestRef = useRef();
@@ -33,7 +35,7 @@ const RotateWheelSet = ({ targetPosition, betSwitch, callback, ...props }) => {
   //https://www.javascriptstuff.com/component-communication/#3-callback-functions
   //https://reactjs.org/docs/context.html
   useEffect(() => {
-    const minWheelSpinTime = [2500, 800, 1600];
+    const minWheelSpinTime = [900, 200, 200];
     const loop = time => {
       //console.log('loop');
       //console.log(time);
@@ -68,29 +70,50 @@ const RotateWheelSet = ({ targetPosition, betSwitch, callback, ...props }) => {
       setTimer(() => Math.floor(deltaRef.current.change));
       const hasNext = positionRef.current.next;
       const wheelIncrement = (currentIndex, nextIndex, wheelTimePassed) => currentIndex === nextIndex && wheelTimePassed ? 0 : 1;
-      if (deltaRef.current.change > minDelay && hasNext) {
-        deltaRef.current.last = time;
-        const leftIncrement = wheelIncrement(positionRef.current.position.left % 11, positionRef.current.next.left, wheelsDeltaRef.current.timePassed.left);
-        const centerIncrement = wheelIncrement(positionRef.current.position.center % 11, positionRef.current.next.center, wheelsDeltaRef.current.timePassed.center);
-        const rightIncrement = wheelIncrement(positionRef.current.position.right % 11, positionRef.current.next.right, wheelsDeltaRef.current.timePassed.right);
-        //check for stop and reset min wait for the next wheel
-        if (waitForWheelStop.current.left && leftIncrement === 0 && centerIncrement === 1) {
-          wheelsDeltaRef.current.last = time;
-          settleRef.current[0] = Math.floor(wheelsDeltaRef.current.change);
-          waitForWheelStop.current.left = false;
+      const leftIncrement = wheelIncrement(positionRef.current.position.left % 11, positionRef.current.next.left, wheelsDeltaRef.current.timePassed.left);
+      const centerIncrement = wheelIncrement(positionRef.current.position.center % 11, positionRef.current.next.center, wheelsDeltaRef.current.timePassed.center);
+      const rightIncrement = wheelIncrement(positionRef.current.position.right % 11, positionRef.current.next.right, wheelsDeltaRef.current.timePassed.right);
+      const checkTimePassedForScroll = (minDelay, currentIncrement, followingIncrement, currentWaitForWheelStop) => {
+        if (deltaRef.current.change > minDelay && hasNext) {
+          //check for stop and reset min wait for the next wheel
+          if (currentWaitForWheelStop && currentIncrement === 0 && followingIncrement === 1) {
+            wheelsDeltaRef.current.last = time;
+            return {
+              updatePosition: true,
+              updateSettleRef: true,
+              currentSettleRef: Math.floor(wheelsDeltaRef.current.change)
+            };
+          }
+          return { updatePosition: true, updateSettleRef: false };
         }
-        if (waitForWheelStop.current.center && centerIncrement === 0 && rightIncrement === 1) {
-          wheelsDeltaRef.current.last = time;
-          settleRef.current[1] = Math.floor(wheelsDeltaRef.current.change);
-          waitForWheelStop.current.center = false;
-        }
+        return { updatePosition: false, updateSettleRef: false };
+      }
 
-        if (rightIncrement === 0) {
-          //wait to right position is settled on before stopping
-          spinningRef.current = false;
-          settleRef.current[2] = Math.floor(wheelsDeltaRef.current.change);
-          waitForWheelStop.current.right = false;//todo: I think this is not needed if it is reset elsewhere
-        }
+      if (deltaRef.current.change > minWheelDelay[0] && hasNext) {
+        deltaRef.current.last = time;
+      }
+
+      const resultLeft = checkTimePassedForScroll(minWheelDelay[0], leftIncrement, centerIncrement, waitForWheelStop.current.left);
+      if (resultLeft.updatePosition && resultLeft.updateSettleRef) {
+        settleRef.current[0] = resultLeft.currentSettleRef;
+        waitForWheelStop.current.left = false;
+      }
+
+      const resultCenter = checkTimePassedForScroll(minWheelDelay[1], centerIncrement, rightIncrement, waitForWheelStop.current.center);
+      if (resultCenter.updatePosition && resultCenter.updateSettleRef) {
+        settleRef.current[1] = resultCenter.currentSettleRef;
+        waitForWheelStop.current.center = false;
+      }
+
+      const resultRight = checkTimePassedForScroll(minWheelDelay[2], rightIncrement, 1, true);
+      if (resultRight.updatePosition && resultRight.updateSettleRef) {
+        //wait to right position is settled on before stopping
+        spinningRef.current = false;
+        settleRef.current[2] = resultRight.currentSettleRef;
+        waitForWheelStop.current.right = false;//todo: I think this is not needed if it is reset elsewhere
+      }
+
+      if (resultLeft.updatePosition || resultCenter.updatePosition || resultRight.updatePosition) {
         positionRef.current.position = {
           left: positionRef.current.position.left + leftIncrement,
           center: positionRef.current.position.center + centerIncrement,
@@ -101,7 +124,7 @@ const RotateWheelSet = ({ targetPosition, betSwitch, callback, ...props }) => {
       // //todo: can we smooth out the scroll using css animation?
       if (spinningRef.current && loopGuardRef.current < loopMax) {
         loopGuardRef.current += 1;
-        //console.log('recursive loop call: ', requestRef.current);
+        //console.log('recursive loop call: ', requestRef.current, loopGuardRef.current);
         requestRef.current = window.requestAnimationFrame(loop);
         //console.log('recursive loop call after', requestRef.current);
       } else {
@@ -137,7 +160,7 @@ const RotateWheelSet = ({ targetPosition, betSwitch, callback, ...props }) => {
       //stop the animation when disposed?
       //if (cancelAnimationFrameId) window.cancelAnimationFrame(cancelAnimationFrameId);
     };
-  }, [betSwitch, callback, targetPosition]);//todo: maybe instead of betSwitch, targetPosition could be used? 
+  }, [betSwitch, callback, targetPosition, minWheelDelay]);//todo: maybe instead of betSwitch, targetPosition could be used? 
   //Nope, because it is possible to get the same spin twice in a row and we need the spin to trigger
   const debugOutput = (
     <>

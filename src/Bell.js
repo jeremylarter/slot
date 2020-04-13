@@ -73,9 +73,9 @@ const Bell = props => {
                     }
                     .animated-bell {
                         animation-name: winner;
-                        animation-delay: 3s;
-                        animation-duration: 4s;
-                        animation-iteration-count: 3;
+                        animation-delay: 1.2s;
+                        animation-duration: 0.25s;
+                        animation-iteration-count: 1;
                         animation-fill-mode: forwards;
                     }
                 `}

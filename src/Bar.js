@@ -4,7 +4,7 @@ const Bar = ({ mykey, ...props }) => {
   //if (props.win) console.log(`animated-bar${mykey}`);
   const className = props.win ? `animated-bar${mykey}` : "bar-background";
   const symbolId = mykey === undefined ? "bar-symbol" : mykey;
-  console.log({ className });
+  //console.log({ className });
   return (
     <div>
       <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -74,9 +74,9 @@ const Bar = ({ mykey, ...props }) => {
                     .animated-bar${mykey} {
                         fill: rgb(255,255,255);
                         animation-name: winner${mykey};
-                        animation-delay: 3s;
-                        animation-duration: 4s;
-                        animation-iteration-count: 3;
+                        animation-delay: 1.2s;
+                        animation-duration: 0.25s;
+                        animation-iteration-count: 1;
                         animation-fill-mode: forwards;
                     }
                 `}
