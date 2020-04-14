@@ -66,7 +66,7 @@ const Orange = props => {
             .orange25 {stroke: #fca800;}
             .orange26 {stroke: #fcac00;}
             .orange27 {stroke: #fcb000;}
-            .orange-stem {stroke: #fc5400; fill="transparent"; mix-blend-mode: color-dodge;}
+            .orange-stem {stroke: #fc5400; mix-blend-mode: color-dodge; fill-opacity: 0;}
             @keyframes winner-orange {
               0% {fill: rgb(0,0,0);}
               50% {fill: gold;}
