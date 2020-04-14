@@ -53,17 +53,17 @@ const Game = () => {
   const targetPosition = useRef();
   const winAmountRef = useRef(0);
   const testWins = [
-    { left: 1, center: 4, right: 2 },//bell bar bell win
     { left: 0, center: 4, right: 4 },//bar win
+    { left: 1, center: 4, right: 2 },//bell bar bell win
     { left: 1, center: 5, right: 2 },//bell win
-    { left: 2, center: 0, right: 1 },//cherry win 5
     { left: 3, center: 1, right: 3 },//orange win
     { left: 4, center: 2, right: 0 },//plum win
-    { left: 0, center: 4, right: 1 },//cherry win 2
-    { left: 2, center: 4, right: 4 },//cherry win 2
-    { left: 2, center: 4, right: 1 },//cherry win 2
+    { left: 2, center: 0, right: 1 },//cherry win 5
     { left: 2, center: 0, right: 4 },//cherry win 5
     { left: 0, center: 0, right: 1 },//cherry win 5
+    { left: 2, center: 4, right: 1 },//cherry win 2
+    { left: 0, center: 4, right: 1 },//cherry win 2
+    { left: 2, center: 4, right: 4 },//cherry win 2
   ];
   const testWinIndex = useRef(0);
   const spendCredit = spendAmount => () => {

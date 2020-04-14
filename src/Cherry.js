@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Cherry = () => {
+const Cherry = props => {
+  const animationClass = props.win ? "animated-cherry" : "";
+  const canary = "#ffff8c";
   return (
     <div>
       <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -38,34 +40,46 @@ const Cherry = () => {
         <title>cherry symbol instance</title>
         <desc>Update of cherry pixel graphics to modern SVG. Contains a cherry graphic with lines drawn vertically down.</desc>
         <style>{`
-                    .cherry-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
-                    .cherry4 {stroke: #fc0000;}
-                    .cherry5 {stroke: #fc1414;}
-                    .cherry6 {stroke: #fc2828;}
-                    .cherry7 {stroke: #fc3c3c;}
-                    .cherry8 {stroke: #fc5050;}
-                    .cherry9 {stroke: #fc6464;}
-                    .cherry10 {stroke: #fc7878;}
-                    .cherry11 {stroke: #fc8c8c;}
-                    .cherry12 {stroke: #fca0a0;}
-                    .cherry-stem9 {stroke: #3cfc3c;}
-                    .cherry-stem10 {stroke: #44fc40;}
-                    .cherry-stem11 {stroke: #4cfc44;}
-                    .cherry-stem12 {stroke: #54fc48;}
-                    .cherry-stem13 {stroke: #5cfc4c;}
-                    .cherry-stem14 {stroke: #64fc50;}
-                    .cherry-stem15 {stroke: #6cfc54;}
-                    .cherry-stem16 {stroke: #74fc58;}
-                    .cherry-stem17 {stroke: #7cfc5c;}
-                    .cherry-stem18 {stroke: #84fc60;}
-                    .cherry-stem19 {stroke: #8cfc64;}
-                    .cherry-stem20 {stroke: #94fc68;}
-                    .cherry-stem21 {stroke: #9cfc6c;}
-                    .cherry-stem22 {stroke: #a4fc70;}
-                    .cherry-stem23 {stroke: #acfc74;}
-                    `}
+            .cherry-background {stroke: #000000; paint-order: stroke;}
+            .cherry4 {stroke: #fc0000;}
+            .cherry5 {stroke: #fc1414;}
+            .cherry6 {stroke: #fc2828;}
+            .cherry7 {stroke: #fc3c3c;}
+            .cherry8 {stroke: #fc5050;}
+            .cherry9 {stroke: #fc6464;}
+            .cherry10 {stroke: #fc7878;}
+            .cherry11 {stroke: #fc8c8c;}
+            .cherry12 {stroke: #fca0a0;}
+            .cherry-stem9 {stroke: #3cfc3c;}
+            .cherry-stem10 {stroke: #44fc40;}
+            .cherry-stem11 {stroke: #4cfc44;}
+            .cherry-stem12 {stroke: #54fc48;}
+            .cherry-stem13 {stroke: #5cfc4c;}
+            .cherry-stem14 {stroke: #64fc50;}
+            .cherry-stem15 {stroke: #6cfc54;}
+            .cherry-stem16 {stroke: #74fc58;}
+            .cherry-stem17 {stroke: #7cfc5c;}
+            .cherry-stem18 {stroke: #84fc60;}
+            .cherry-stem19 {stroke: #8cfc64;}
+            .cherry-stem20 {stroke: #94fc68;}
+            .cherry-stem21 {stroke: #9cfc6c;}
+            .cherry-stem22 {stroke: #a4fc70;}
+            .cherry-stem23 {stroke: #acfc74;}
+            @keyframes winner-cherry {
+              0% {fill: rgb(0,0,0);}
+              50% {fill: gold;}
+              100% {fill: ${canary};}
+            }
+            .animated-cherry {
+              animation-name: winner-cherry;
+              animation-delay: 1.2s;
+              animation-duration: 0.25s;
+              animation-iteration-count: 1;
+              animation-fill-mode: forwards;
+            }
+          `}
         </style>
-        <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-cherry" />
+        <use className={animationClass} width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-cherry" />
       </svg>
     </div>
   );

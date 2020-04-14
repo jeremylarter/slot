@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Orange = () => {
+const Orange = props => {
+  const animationClass = props.win ? "animated-orange" : "";
   return (
     <div>
       <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -40,35 +41,47 @@ const Orange = () => {
         <desc>Update of orange pixel graphics to modern SVG. Contains an orange fruit graphic with lines drawn vertically down.</desc>
         <style>
           {`
-                    .orange-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
-                    .orange4 {stroke: #fc5400;}
-                    .orange5 {stroke: #fc5800;}
-                    .orange6 {stroke: #fc5c00;}
-                    .orange7 {stroke: #fc6000;}
-                    .orange8 {stroke: #fc6400;}
-                    .orange9 {stroke: #fc6800;}
-                    .orange10 {stroke: #fc6c00;}
-                    .orange11 {stroke: #fc7000;}
-                    .orange12 {stroke: #fc7400;}
-                    .orange13 {stroke: #fc7800;}
-                    .orange14 {stroke: #fc7c00;}
-                    .orange15 {stroke: #fc8000;}
-                    .orange16 {stroke: #fc8400;}
-                    .orange17 {stroke: #fc8800;}
-                    .orange18 {stroke: #fc8c00;}
-                    .orange19 {stroke: #fc9000;}
-                    .orange20 {stroke: #fc9400;}
-                    .orange21 {stroke: #fc9800;}
-                    .orange22 {stroke: #fc9c00;}
-                    .orange23 {stroke: #fca000;}
-                    .orange24 {stroke: #fca400;}
-                    .orange25 {stroke: #fca800;}
-                    .orange26 {stroke: #fcac00;}
-                    .orange27 {stroke: #fcb000;}
-                    .orange-stem {stroke: #fc5400; fill="transparent"; mix-blend-mode: color-dodge;}
-                `}
+            .orange-background {stroke: #000000; paint-order: stroke;}
+            .orange4 {stroke: #fc5400;}
+            .orange5 {stroke: #fc5800;}
+            .orange6 {stroke: #fc5c00;}
+            .orange7 {stroke: #fc6000;}
+            .orange8 {stroke: #fc6400;}
+            .orange9 {stroke: #fc6800;}
+            .orange10 {stroke: #fc6c00;}
+            .orange11 {stroke: #fc7000;}
+            .orange12 {stroke: #fc7400;}
+            .orange13 {stroke: #fc7800;}
+            .orange14 {stroke: #fc7c00;}
+            .orange15 {stroke: #fc8000;}
+            .orange16 {stroke: #fc8400;}
+            .orange17 {stroke: #fc8800;}
+            .orange18 {stroke: #fc8c00;}
+            .orange19 {stroke: #fc9000;}
+            .orange20 {stroke: #fc9400;}
+            .orange21 {stroke: #fc9800;}
+            .orange22 {stroke: #fc9c00;}
+            .orange23 {stroke: #fca000;}
+            .orange24 {stroke: #fca400;}
+            .orange25 {stroke: #fca800;}
+            .orange26 {stroke: #fcac00;}
+            .orange27 {stroke: #fcb000;}
+            .orange-stem {stroke: #fc5400; fill="transparent"; mix-blend-mode: color-dodge;}
+            @keyframes winner-orange {
+              0% {fill: rgb(0,0,0);}
+              50% {fill: gold;}
+              100% {fill: cyan;}
+            }
+            .animated-orange {
+              animation-name: winner-orange;
+              animation-delay: 1.2s;
+              animation-duration: 0.25s;
+              animation-iteration-count: 1;
+              animation-fill-mode: forwards;
+            }
+          `}
         </style>
-        <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-orange" />
+        <use className={animationClass} width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-orange" />
       </svg>
     </div>
   );

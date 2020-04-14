@@ -41,44 +41,44 @@ const Bell = props => {
         <desc>Update of bell pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
         <style>
           {`
-                    .bell-background {stroke: #000000; paint-order: stroke;}
-                    .bell1 {stroke: #0008fc;}
-                    .bell2 {stroke: #0010fc;}
-                    .bell3 {stroke: #0018fc;}
-                    .bell4 {stroke: #0020fc;}
-                    .bell5 {stroke: #0028fc;}
-                    .bell6 {stroke: #0030fc;}
-                    .bell7 {stroke: #0038fc;}
-                    .bell8 {stroke: #0040fc;}
-                    .bell9 {stroke: #0048fc;}
-                    .bell10 {stroke: #0050fc;}
-                    .bell11 {stroke: #0058fc;}
-                    .bell12 {stroke: #0060fc;}
-                    .bell13 {stroke: #0068fc;}
-                    .bell14 {stroke: #0070fc;}
-                    .bell15 {stroke: #0078fc;}
-                    .bell16 {stroke: #0080fc;}
-                    .bell17 {stroke: #0088fc;}
-                    .bell18 {stroke: #0090fc;}
-                    .bell19 {stroke: #0098fc;}
-                    .bell20 {stroke: #00a0fc;}
-                    .bell21 {stroke: #00a8fc;}
-                    .bell22 {stroke: #00b0fc;}
-                    .bell23 {stroke: #00b8fc;}
-                    .bell24 {stroke: #00c0fc;}
-                    .bell25 {stroke: #00c8fc;}
-                    @keyframes winner {
-                        from {fill: rgb(0,0,0);}
-                        to {fill: gold;}
-                    }
-                    .animated-bell {
-                        animation-name: winner;
-                        animation-delay: 1.2s;
-                        animation-duration: 0.25s;
-                        animation-iteration-count: 1;
-                        animation-fill-mode: forwards;
-                    }
-                `}
+            .bell-background {stroke: #000000; paint-order: stroke;}
+            .bell1 {stroke: #0008fc;}
+            .bell2 {stroke: #0010fc;}
+            .bell3 {stroke: #0018fc;}
+            .bell4 {stroke: #0020fc;}
+            .bell5 {stroke: #0028fc;}
+            .bell6 {stroke: #0030fc;}
+            .bell7 {stroke: #0038fc;}
+            .bell8 {stroke: #0040fc;}
+            .bell9 {stroke: #0048fc;}
+            .bell10 {stroke: #0050fc;}
+            .bell11 {stroke: #0058fc;}
+            .bell12 {stroke: #0060fc;}
+            .bell13 {stroke: #0068fc;}
+            .bell14 {stroke: #0070fc;}
+            .bell15 {stroke: #0078fc;}
+            .bell16 {stroke: #0080fc;}
+            .bell17 {stroke: #0088fc;}
+            .bell18 {stroke: #0090fc;}
+            .bell19 {stroke: #0098fc;}
+            .bell20 {stroke: #00a0fc;}
+            .bell21 {stroke: #00a8fc;}
+            .bell22 {stroke: #00b0fc;}
+            .bell23 {stroke: #00b8fc;}
+            .bell24 {stroke: #00c0fc;}
+            .bell25 {stroke: #00c8fc;}
+            @keyframes winner-bell {
+                from {fill: rgb(0,0,0);}
+                to {fill: gold;}
+            }
+            .animated-bell {
+                animation-name: winner-bell;
+                animation-delay: 1.2s;
+                animation-duration: 0.25s;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+          `}
         </style>
         <use className={animationClass} width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-bell" />
       </svg>

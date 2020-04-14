@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Plum = () => {
+const Plum = props => {
+  const animationClass = props.win ? "animated-plum" : "";
+  const aubergine = "#00a49c";
   return (
     <div>
       <svg viewBox="0.5 0 30 30" width="90px" height="90px" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -43,38 +45,50 @@ const Plum = () => {
         <desc>Update of plum pixel graphics to modern SVG. Contains a plum graphic with lines drawn vertically down.</desc>
         <style>
           {`
-                    .plum-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
-                    .plum-dark-line {stroke: #c808c8;}
-                    .plum6 {stroke: #c810c8;}
-                    .plum7 {stroke: #c818c8;}
-                    .plum8 {stroke: #c820c8;}
-                    .plum9 {stroke: #c828c8;}
-                    .plum10 {stroke: #c830c8;}
-                    .plum11 {stroke: #c838c8;}
-                    .plum12 {stroke: #c840c8;}
-                    .plum13 {stroke: #c848c8;}
-                    .plum14 {stroke: #c850c8;}
-                    .plum15 {stroke: #c858c8;}
-                    .plum16 {stroke: #c860c8;}
-                    .plum17 {stroke: #c868c8;}
-                    .plum18 {stroke: #c870c8;}
-                    .plum19 {stroke: #c878c8;}
-                    .plum20 {stroke: #c880c8;}
-                    .plum21 {stroke: #c888c8;}
-                    .plum22 {stroke: #c890c8;}
-                    .plum23 {stroke: #c898c8;}
-                    .plum24 {stroke: #c8a0c8;}
-                    .plum25 {stroke: #c8a8c8;}
-                    .plum-stem10 {stroke: #a05400;}
-                    .plum-stem11 {stroke: #a45400;}
-                    .plum-stem12 {stroke: #a85400;}
-                    .plum-stem13 {stroke: #ac5400;}
-                    .plum-stem14 {stroke: #b05400;}
-                    .plum-stem15 {stroke: #b45400;}
-                    .plum-stem16 {stroke: #b85400;}
-                `}
+            .plum-background {stroke: #000000; paint-order: stroke;}
+            .plum-dark-line {stroke: #c808c8;}
+            .plum6 {stroke: #c810c8;}
+            .plum7 {stroke: #c818c8;}
+            .plum8 {stroke: #c820c8;}
+            .plum9 {stroke: #c828c8;}
+            .plum10 {stroke: #c830c8;}
+            .plum11 {stroke: #c838c8;}
+            .plum12 {stroke: #c840c8;}
+            .plum13 {stroke: #c848c8;}
+            .plum14 {stroke: #c850c8;}
+            .plum15 {stroke: #c858c8;}
+            .plum16 {stroke: #c860c8;}
+            .plum17 {stroke: #c868c8;}
+            .plum18 {stroke: #c870c8;}
+            .plum19 {stroke: #c878c8;}
+            .plum20 {stroke: #c880c8;}
+            .plum21 {stroke: #c888c8;}
+            .plum22 {stroke: #c890c8;}
+            .plum23 {stroke: #c898c8;}
+            .plum24 {stroke: #c8a0c8;}
+            .plum25 {stroke: #c8a8c8;}
+            .plum-stem10 {stroke: #a05400;}
+            .plum-stem11 {stroke: #a45400;}
+            .plum-stem12 {stroke: #a85400;}
+            .plum-stem13 {stroke: #ac5400;}
+            .plum-stem14 {stroke: #b05400;}
+            .plum-stem15 {stroke: #b45400;}
+            .plum-stem16 {stroke: #b85400;}
+            @keyframes winner-plum {
+              0% {fill: rgb(0,0,0);}
+              50% {fill: gold;}
+              100% {fill: ${aubergine};}
+            }
+            .animated-plum {
+              animation-name: winner-plum;
+              animation-delay: 1.2s;
+              animation-duration: 0.25s;
+              animation-iteration-count: 1;
+              animation-fill-mode: forwards;
+            }
+          `}
         </style>
-        <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-plum" />
+        <use className={animationClass} width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-plum" />
       </svg>
     </div>
   );
