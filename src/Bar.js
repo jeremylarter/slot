@@ -85,7 +85,10 @@ const Bar = props => {
             }
           `}
         </style>
-        <use className={animationClass} width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref={"#symbol-bar"} />
+        <use className={animationClass} width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlinkHref="#symbol-bar" >
+          <animateTransform attributeName="transform" type="scale" additive="sum" from="1 1" to="1 0.9" begin="0" dur="0.1s" />
+          <animateTransform attributeName="transform" type="scale" additive="sum" from="1 0.9" to="1 1" begin="0.1s" dur="0.1s" />
+        </use>
       </svg>
     </div>
   );
