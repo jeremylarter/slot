@@ -14,6 +14,15 @@ const Game = () => {
   //add payout odds for configuration sets - tell people how they work
   //add sliders for config values e.g. time for wheel to settle
   //add smoothing to moving items - greensock?
+  //set to random
+  //increase size of bet button
+  //payline highlight
+  //fix max zoom column drop
+  //animation bug in Safari - BAR animation does not show, but Bell animation works.
+  //SignalR number of users
+  //make the wheels accelarate and decelarate
+  //add more interesting animations
+  //fix bug where on a cherry win, other items animate
   const debug = false;
   const render = useRef(0);
   const [credit, setCredit] = useState(2);
