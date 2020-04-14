@@ -18,7 +18,6 @@ const Game = () => {
   //increase size of bet button
   //payline highlight
   //fix max zoom column drop
-  //animation bug in Safari - BAR animation does not show, but Bell animation works.
   //SignalR number of users
   //make the wheels accelarate and decelarate
   //add more interesting animations
