@@ -9,7 +9,7 @@ const Plum = props => {
         <defs>
           <symbol id="symbol-plum" viewBox="0.5 0 30 30">
             <g>
-              <path d="M 0,0 V 30 H 30 V 0z" className="plum-background" />
+              <path d="M 0.5,-0.5 V 30.5 H 31 V -0.5z" className="plum-background" />
               <path d="M 5,16 V 21 M 13,12 V 17 M 14,10 V 13 M 15,8 V 11" className="plum-dark-line" />
               <path d="M 6,13 V 22" className="plum6" />
               <path d="M 7,11 V 23" className="plum7" />

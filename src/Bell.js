@@ -8,7 +8,7 @@ const Bell = props => {
         <defs>
           <symbol id="symbol-bell" viewBox="0.5 0 30 30">
             <g>
-              <path d="M 0,0 V 30 H 30 V 0z" className="bell-background" />
+              <path d="M 0.5,-0.5 V 30.5 H 31 V -0.5z" className="bell-background" />
               <path d="M 4 22 V 25" className="bell1" />
               <path d="M 5 21 V 25" className="bell2" />
               <path d="M 6 18 V 25" className="bell3" />
@@ -41,7 +41,7 @@ const Bell = props => {
         <desc>Update of bell pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
         <style>
           {`
-            .bell-background {stroke: #000000; paint-order: stroke;}
+            .bell-background {stroke: red; paint-order: stroke;}
             .bell1 {stroke: #0008fc;}
             .bell2 {stroke: #0010fc;}
             .bell3 {stroke: #0018fc;}

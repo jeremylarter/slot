@@ -8,7 +8,7 @@ const Orange = props => {
         <defs>
           <symbol id="symbol-orange" viewBox="0.5 0 30 30">
             <g>
-              <path d="M 0,0 V 30 H 30 V 0z" className="orange-background" />
+              <path d="M 0.5,-0.5 V 30.5 H 31 V -0.5z" className="orange-background" />
               <path d="M 4,12 V 19" className="orange4" />
               <path d="M 5,10 V 21" className="orange5" />
               <path d="M 6,8 V 23" className="orange6" />

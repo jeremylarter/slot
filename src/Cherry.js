@@ -9,7 +9,7 @@ const Cherry = props => {
         <defs>
           <symbol id="symbol-cherry" viewBox="0.5 0 30 30">
             <g>
-              <path d="M 0,0 V 30 H 30 V 0z" className="cherry-background" />
+              <path d="M 0.5,-0.5 V 30.5 H 31 V -0.5z" className="cherry-background" />
               <path d="M 4,20 V 26 M 19,20 V 26" className="cherry4" />
               <path d="M 5,19 V 27 M 20,19 V 27" className="cherry5" />
               <path d="M 6,18 V 28 M 21,18 V 28" className="cherry6" />
