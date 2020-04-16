@@ -5,12 +5,12 @@ import Game from './Game';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={slot} className="App-logo" alt="slot" />
-        <h1>
+    <div className="text-center">
+      <img src={slot} alt="slot logo" />
+      <header>
+        <h4>
           Slot Machine Simulator
-        </h1>
+        </h4>
       </header>
       <Game />
     </div>

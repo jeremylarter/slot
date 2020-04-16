@@ -2,12 +2,12 @@ import React from 'react';
 import DisplayItem from './DisplayItem';
 import { itemType } from './DisplayWheelSet';
 
-const DisplayPayouts = () => {
+const DisplayPayouts = props => {
   //idea: display line by line in a loop after a delay
   //display in a scaled panel to the side
   return (
     <div>
-      <ul style={{ listStyleType: "none", display: "inline-block" }}>
+      <ul className="list-unstyled" style={{ display: "inline-block" }}>
         <li><DisplayItem item={itemType.any} /></li>
         <li><DisplayItem item={itemType.cherry} /></li>
         <li><DisplayItem item={itemType.cherry} /></li>
@@ -20,7 +20,7 @@ const DisplayPayouts = () => {
         <li><DisplayItem item={itemType.bell} /></li>
         <li><DisplayItem item={itemType.bar} /></li>
       </ul>
-      <ul style={{ listStyleType: "none", display: "inline-block" }}>
+      <ul className="list-unstyled" style={{ display: "inline-block" }}>
         <li><DisplayItem item={itemType.any} /></li>
         <li><DisplayItem item={itemType.any} /></li>
         <li><DisplayItem item={itemType.any} /></li>
@@ -33,7 +33,7 @@ const DisplayPayouts = () => {
         <li><DisplayItem item={itemType.bar} /></li>
         <li><DisplayItem item={itemType.bar} /></li>
       </ul>
-      <ul style={{ listStyleType: "none", display: "inline-block" }}>
+      <ul className="list-unstyled" style={{ display: "inline-block" }}>
         <li><DisplayItem item={itemType.cherry} /></li>
         <li><DisplayItem item={itemType.any} /></li>
         <li><DisplayItem item={itemType.cherry} /></li>
@@ -46,7 +46,7 @@ const DisplayPayouts = () => {
         <li><DisplayItem item={itemType.bell} /></li>
         <li><DisplayItem item={itemType.bar} /></li>
       </ul>
-      <ul style={{ listStyleType: "none", display: "inline-block" }}>
+      <ul className="list-unstyled" style={{ display: "inline-block" }}>
         <li><DisplayItem item={itemType.any} text="2" /></li>
         <li><DisplayItem item={itemType.any} text="2" /></li>
         <li><DisplayItem item={itemType.any} text="2" /></li>

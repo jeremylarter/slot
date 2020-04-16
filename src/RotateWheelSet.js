@@ -163,18 +163,22 @@ const RotateWheelSet = ({ targetPosition, betSwitch, callback, ...props }) => {
   }, [betSwitch, callback, targetPosition, minWheelDelay]);//todo: maybe instead of betSwitch, targetPosition could be used? 
   //Nope, because it is possible to get the same spin twice in a row and we need the spin to trigger
   const debugOutput = (
-    <>
-      <button onClick={cancelSpin} disabled={!spinningRef.current}>break</button><br />
-      {`count: ${spinCounter} ${spinningRef.current ? "spinning" : "stopped"} ${timer} `}<br />
-      {`time to settle: ${settleRef.current[0]}, ${settleRef.current[1]}, ${settleRef.current[2]}`}<br />
-      <FramesPerSecond time={deltaTime.current} animationId={spinCounter} /><br />
-    </>
+    <div className="row">
+      <div className="col-sm-12">
+        <button className="btn btn-default" onClick={cancelSpin} disabled={!spinningRef.current}>break</button><br />
+        {`count: ${spinCounter} ${spinningRef.current ? "spinning" : "stopped"} ${timer} `}<br />
+        {`time to settle: ${settleRef.current[0]}, ${settleRef.current[1]}, ${settleRef.current[2]}`}<br />
+        <FramesPerSecond time={deltaTime.current} animationId={spinCounter} /><br />
+      </div>
+    </div>
   );
 
   return (
-    <div>
-      {props.debug ? debugOutput : null}
-      <DisplayWheelSet startPosition={currentPosition} debug={props.debug} win={props.win} />
+    <div className="row">
+      <div className="col-sm-12">
+        {props.debug ? debugOutput : null}
+        <DisplayWheelSet startPosition={currentPosition} debug={props.debug} win={props.win} />
+      </div>
     </div>
   );
 }

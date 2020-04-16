@@ -95,7 +95,20 @@ const Game = () => {
   return (
     <DisplayCredit credit={credit} >
       {debug ? `Game: ${render.current++}` : null}
-      <button onClick={spendCredit(spendAmount)} disabled={betInProgress}>bet</button><br />{customerAlert}
+      <div className="row">
+        <div className="col-sm-12 text-center">
+          <button className="btn btn-primary col-sm-2" onClick={() => { setDisplayPayouts(_ => !_); }} disabled={betInProgress}>
+            {displayPayouts ? "HIDE" : "SHOW"} PAYOUTS
+          </button>
+          &nbsp;
+          <button className="btn btn-primary col-sm-2" onClick={insertCredit(insertCreditAmount)}>
+            {insertCreditAmount > 1
+              ? `INSERT ${insertCreditAmount} COINS`
+              : "INSERT COIN"}
+          </button>
+          {customerAlert}
+        </div>
+      </div>
 
       <RotateWheelSet
         betSwitch={betSwitch} callback={betFinished}
@@ -109,10 +122,20 @@ const Game = () => {
         win={winAmountRef.current > 0}
         debug={debug}
       />
-      <DisplayWin win={win} amount={winAmountRef.current} />
-      <button onClick={insertCredit(insertCreditAmount)}>insert {insertCreditAmount} credit{insertCreditAmount > 1 ? "s" : ""}</button><br />
-      <button onClick={() => { setDisplayPayouts(_ => !_); }} disabled={betInProgress}>payouts</button><br />
+      <div className="row">
+        <div className="col-sm-4 text-center">
+        </div>
+        <div className="col-sm-4 text-center">
+          <button className="btn btn-success btn-lg" onClick={spendCredit(spendAmount)} disabled={betInProgress}>
+            BET
+          </button>
+        </div>
+        <div className="col-sm-4 text-center">
+          <DisplayWin win={win} amount={winAmountRef.current} />
+        </div>
+      </div>
       {payouts}
+
     </DisplayCredit>
   );
 }

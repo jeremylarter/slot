@@ -113,7 +113,7 @@ const DisplayWheelSet = (props) => {
     <div>
       <p>{props.debug ? render.current++ : ""}</p>
       {wheelSet.map(_ =>
-        <ul key={_.key} style={{ listStyleType: "none", display: "inline-block" }}>
+        <ul className="list-unstyled" key={_.key} style={{ display: "inline-block" }}>
           {offsetList.map(offset =>
             <li key={_.key + offset}>
               <DisplayItem item={_.currentWheel[getWheelIndex(_.currentPosition, offset, _.maxItems)]}
