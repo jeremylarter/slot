@@ -153,10 +153,10 @@
       </g>
     </symbol>
   </defs>
-  <title>Slot machine simulator - Computing III - Major assignment</title>
-  <desc>Update of pixel graphics to modern SVG. Contains a bell graphic with lines drawn vertically down.</desc>
+  <title>Slot machine simulator logo</title>
+  <desc>Contains a cherry, plum, bell, orange and bar graphic with lines drawn vertically down.</desc>
   <style>
-    .bell-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .bell-background {stroke: "none"; paint-order: stroke; fill: "transparent"; fill-opacity: 0}
     .bell1 {stroke: #0008fc;}
     .bell2 {stroke: #0010fc;}
     .bell3 {stroke: #0018fc;}
@@ -182,7 +182,7 @@
     .bell23 {stroke: #00b8fc;}
     .bell24 {stroke: #00c0fc;}
     .bell25 {stroke: #00c8fc;}
-    .plum-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .plum-background {stroke: "none"; paint-order: stroke; fill: "transparent"; fill-opacity: 0}
     .plum-dark-line {stroke: #c808c8;}
     .plum6 {stroke: #c810c8;}
     .plum7 {stroke: #c818c8;}
@@ -211,7 +211,7 @@
     .plum-stem14 {stroke: #b05400;}
     .plum-stem15 {stroke: #b45400;}
     .plum-stem16 {stroke: #b85400;}
-    .orange-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .orange-background {stroke: "none"; paint-order: stroke; fill: "transparent"; fill-opacity: 0}
     .orange4 {stroke: #fc5400;}
     .orange5 {stroke: #fc5800;}
     .orange6 {stroke: #fc5c00;}
@@ -262,7 +262,7 @@
     .bar27 {stroke: #b0b0fc;}
     .bar28 {stroke: #b8b8fc;}
     .bar29 {stroke: #c0c0fc;}
-    .cherry-background {stroke: #000000; paint-order: stroke; fill: rgb(0, 0, 0);}
+    .cherry-background {stroke: "none"; paint-order: stroke; fill: "transparent"; fill-opacity: 0}
     .cherry4 {stroke: #fc0000;}
     .cherry5 {stroke: #fc1414;}
     .cherry6 {stroke: #fc2828;}
@@ -288,13 +288,31 @@
     .cherry-stem22 {stroke: #a4fc70;}
     .cherry-stem23 {stroke: #acfc74;}
   </style>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#symbol-cherry"/>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 30, 0)" xlink:href="#symbol-plum"/>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 60, 0)" xlink:href="#symbol-bell"/>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 30)" xlink:href="#symbol-orange"/>
-  <use width="30" height="30" transform="matrix(0.7, -0.7, 0.7, 0.7, 25, 45)" xlink:href="#symbol-bar" bx:origin="0.5 0.5"/>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 60, 30)" xlink:href="#symbol-cherry"/>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 60)" xlink:href="#symbol-plum"/>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 30, 60)" xlink:href="#symbol-bell"/>
-  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 60, 60)" xlink:href="#symbol-orange"/>
+  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#symbol-cherry">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="360 15 15.5" to="0 15 15.5" begin="1s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 30, 0)" xlink:href="#symbol-plum">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 15 15.5" to="360 15 15.5" begin="2s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use id="bell1" width="30" height="30" transform="matrix(1, 0, 0, 1, 60, 0)" xlink:href="#symbol-bell">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="360 15 15.5" to="0 15 15.5" begin="3s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 30)" xlink:href="#symbol-orange">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 15 15.5" to="360 15 15.5" begin="4s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use width="30" height="30" transform="matrix(0.7, -0.7, 0.7, 0.7, 25, 45)" xlink:href="#symbol-bar" bx:origin="0.5 0.5">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="360 15 15.5" to="0 15 15.5" begin="5s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 60, 30)" xlink:href="#symbol-cherry">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 15 15.5" to="360 15 15.5" begin="6s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 0, 60)" xlink:href="#symbol-plum">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="360 15 15.5" to="0 15 15.5" begin="7s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 30, 60)" xlink:href="#symbol-bell">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 15 15.5" to="360 15 15.5" begin="8s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
+  <use width="30" height="30" transform="matrix(1, 0, 0, 1, 60, 60)" xlink:href="#symbol-orange">
+    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="360 15 15.5" to="0 15 15.5" begin="9s" dur="1s" additive="sum" repeatCount="1" />
+  </use>
 </svg>
