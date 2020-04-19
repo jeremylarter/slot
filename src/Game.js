@@ -24,7 +24,7 @@ const Game = () => {
   //fix bug where on a cherry win, other items animate
   const debug = false;
   const render = useRef(0);
-  const [credit, setCredit] = useState(2);
+  const [credit, setCredit] = useState(0);
   const insertCreditAmount = 1;
   const insertCredit = creditAmount => () => setCredit(_ => _ + creditAmount);
 
@@ -78,7 +78,7 @@ const Game = () => {
       setWin(false);
       winAmountRef.current = calculateWinAmount(targetPosition.current);//can this be async?
     } else {
-      setCustomerAlert("Please insert credit to continue.");
+      setCustomerAlert("No coins left to bet.");
     }
   }
   const [betInProgress, setBetInProgress] = useState(false);
@@ -106,7 +106,6 @@ const Game = () => {
               ? `INSERT ${insertCreditAmount} COINS`
               : "INSERT COIN"}
           </button>
-          {customerAlert}
         </div>
       </div>
 
@@ -131,6 +130,7 @@ const Game = () => {
           </button>
         </div>
         <div className="col-sm-4 text-center">
+          {customerAlert}
           <DisplayWin win={win} amount={winAmountRef.current} />
         </div>
       </div>
