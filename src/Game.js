@@ -26,8 +26,11 @@ const Game = () => {
   const render = useRef(0);
   const [credit, setCredit] = useState(0);
   const insertCreditAmount = 1;
-  const insertCredit = creditAmount => () => setCredit(_ => _ + creditAmount);
-
+  const [customerAlert, setCustomerAlert] = useState("");
+  const insertCredit = creditAmount => () => {
+    setCustomerAlert("");
+    setCredit(_ => _ + creditAmount);
+  }
   const wheelIndexMax = 11; //todo: remove this and use DisplayWheelSet values.
   const [win, setWin] = useState();
   const [betSwitch, setBetSwitch] = useState(false);//todo: initialise only once
@@ -48,7 +51,6 @@ const Game = () => {
   // }, [win]);
   const spendAmount = 1;
   const reduceCredit = spendAmount => () => setCredit(_ => _ - spendAmount);
-  const [customerAlert, setCustomerAlert] = useState("");
   const targetPosition = useRef();
   const winAmountRef = useRef(0);
   const testWins = [
